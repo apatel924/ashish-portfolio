@@ -1,10 +1,16 @@
-import "./App.css";
+import React from "react";
 
 function App() {
+  console.log("App.js is rendering!");
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1> initial setuep</h1>
-      <p>Area for portfolio code</p>
+    <div
+      style={{
+        textAlign: "center",
+        backgroundColor: "yellow",
+        height: "100vh",
+      }}
+    >
+      <h1 style={{ color: "black" }}>Hello World!</h1>
     </div>
   );
 }
