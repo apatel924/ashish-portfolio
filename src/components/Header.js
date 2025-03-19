@@ -5,9 +5,15 @@ const Header = () => {
     marginBottom: 40,
   };
 
-  const nameStyle = {
-    marginBottom: 10,
-    fontSize: 48,
-    color: "e6f1ff",
-  };
+  const nameStyle = {};
+
+  const titleStyle = {};
+
+  const paragraphStyle = {};
+
+  return (
+    <header style={containerStyle}>
+      <h1 style={nameStyle}>Ashish Patel</h1>
+    </header>
+  );
 };
