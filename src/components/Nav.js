@@ -1,24 +1,54 @@
+// src/components/Nav.js
 import React from "react";
 
 const Nav = () => {
   const navStyle = {
     display: "flex",
-    gap: "20px",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     backgroundColor: "#112240",
-    padding: "10px",
+    padding: "20px",
+    position: "sticky", // optional if you want it to stick
+    top: 0,
+    zIndex: 999,
+  };
+
+  const ulStyle = {
+    listStyle: "none",
+    display: "flex",
+    gap: "20px",
   };
 
   const linkStyle = {
-    color: "#a8b2d1",
-    cursor: "pointer",
+    color: "#e6f1ff",
+    textDecoration: "none",
+    fontSize: "14px",
+    fontWeight: 500,
   };
 
   return (
     <nav style={navStyle}>
-      <span style={linkStyle}>About</span>
-      <span style={linkStyle}>Experience</span>
-      <span style={linkStyle}>Projects</span>
+      <ul style={ulStyle}>
+        <li>
+          <a href="#hero" style={linkStyle}>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#about" style={linkStyle}>
+            About
+          </a>
+        </li>
+        <li>
+          <a href="#experience" style={linkStyle}>
+            Experience
+          </a>
+        </li>
+        <li>
+          <a href="#projects" style={linkStyle}>
+            Projects
+          </a>
+        </li>
+      </ul>
     </nav>
   );
 };
