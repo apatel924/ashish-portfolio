@@ -1,17 +1,14 @@
-// src/components/Footer.js
 import React from "react";
-import { FaGithub, FaLinkedin, FaCodepen, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
-  const footerStyle = {
-    marginTop: "60px",
-    textAlign: "center",
+  const containerStyle = {
+    marginTop: "40px",
   };
 
   const linksStyle = {
     display: "flex",
     gap: "20px",
-    justifyContent: "center",
   };
 
   const linkStyle = {
@@ -23,16 +20,15 @@ const Footer = () => {
   const handleMouseEnter = (e) => {
     e.target.style.color = "#e6f1ff";
   };
-
   const handleMouseLeave = (e) => {
     e.target.style.color = "#8892b0";
   };
 
   return (
-    <footer style={footerStyle}>
+    <footer style={containerStyle}>
       <div style={linksStyle}>
         <a
-          href="https://github.com/your-github"
+          href="https://github.com/github"
           target="_blank"
           rel="noopener noreferrer"
           style={linkStyle}
@@ -51,7 +47,6 @@ const Footer = () => {
         >
           <FaLinkedin />
         </a>
-        {/* Add more icons as needed */}
       </div>
     </footer>
   );
