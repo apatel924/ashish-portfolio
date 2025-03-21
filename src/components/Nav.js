@@ -1,4 +1,3 @@
-// src/components/Nav.js
 import React from "react";
 
 const Nav = () => {
@@ -7,7 +6,7 @@ const Nav = () => {
     justifyContent: "flex-end",
     backgroundColor: "#112240",
     padding: "20px",
-    position: "sticky", // optional if you want it to stick
+    position: "sticky",
     top: 0,
     zIndex: 999,
   };
