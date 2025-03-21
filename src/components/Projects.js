@@ -2,71 +2,76 @@ import React from "react";
 import { projectsData } from "../data/projects";
 
 const Projects = () => {
-  const sectionStyle = { marginBottom: "100px" };
-  const itemStyle = {
-    display: "grid",
-    gridTemplateColumns: "auto 1fr",
-    gap: "20px",
-    marginBottom: "40px",
-    cursor: "pointer",
-    padding: "20px",
-    borderRadius: "4px",
-    transition: "background-color 0.3s ease",
-  };
-  const thumbnailStyle = (thumbnail) => ({
-    width: "120px",
-    height: "80px",
-    overflow: "hidden",
-    borderRadius: "4px",
-    backgroundImage: thumbnail ? `url(${thumbnail})` : "none",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  });
-  const titleStyle = {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "12px",
-    fontSize: "24px",
-    color: "#e6f1ff",
-  };
-  const descStyle = {
-    marginBottom: "15px",
-    color: "#a8b2d1",
-    maxWidth: "600px",
-    lineHeight: 1.5,
-  };
-  const tagsStyle = { display: "flex", flexWrap: "wrap" };
-  const tagStyle = {
-    display: "inline-block",
-    backgroundColor: "#233554",
-    color: "#64ffda",
-    fontFamily: "monospace",
-    fontSize: "12px",
-    padding: "6px 12px",
-    marginRight: "8px",
-    marginBottom: "8px",
-    borderRadius: "4px",
-  };
-
   return (
-    <section style={sectionStyle}>
-      <h2 style={{ color: "#e6f1ff", marginBottom: "16px" }}>Projects</h2>
+    <div style={{ marginBottom: "60px" }}>
+      <h2 style={{ fontSize: "2rem", marginBottom: "20px" }}>Projects</h2>
       {projectsData.map((project, index) => (
         <div
           key={index}
-          style={itemStyle}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "auto 1fr",
+            gap: "20px",
+            marginBottom: "40px",
+            padding: "20px",
+            borderRadius: "4px",
+            transition: "background-color 0.3s ease",
+            border: "1px solid #233554",
+          }}
           onMouseEnter={(e) =>
             (e.currentTarget.style.backgroundColor = "#233554")
           }
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "")}
         >
-          <div style={thumbnailStyle(project.thumbnail)} />
+          <div
+            style={{
+              width: "120px",
+              height: "80px",
+              overflow: "hidden",
+              borderRadius: "4px",
+              backgroundImage: project.thumbnail
+                ? `url(${project.thumbnail})`
+                : "none",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
           <div>
-            <h3 style={titleStyle}>{project.title}</h3>
-            <p style={descStyle}>{project.description}</p>
-            <div style={tagsStyle}>
+            <h3
+              style={{
+                fontSize: "20px",
+                color: "#e6f1ff",
+                marginBottom: "12px",
+              }}
+            >
+              {project.title}
+            </h3>
+            <p
+              style={{
+                marginBottom: "15px",
+                color: "#a8b2d1",
+                maxWidth: "600px",
+                lineHeight: 1.5,
+              }}
+            >
+              {project.description}
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
               {project.technologies.map((tech, i) => (
-                <span style={tagStyle} key={i}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    backgroundColor: "#233554",
+                    color: "#64ffda",
+                    fontFamily: "monospace",
+                    fontSize: "12px",
+                    padding: "6px 12px",
+                    marginRight: "8px",
+                    marginBottom: "8px",
+                    borderRadius: "4px",
+                  }}
+                  key={i}
+                >
                   {tech}
                 </span>
               ))}
@@ -74,7 +79,7 @@ const Projects = () => {
           </div>
         </div>
       ))}
-    </section>
+    </div>
   );
 };
 
