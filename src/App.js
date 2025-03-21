@@ -1,5 +1,5 @@
 import React from "react";
-import LeftSidebar from "./components/LeftSideBar";
+import LeftSidebar from "./components/LeftSidebar";
 import AboutSection from "./components/AboutSection";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
