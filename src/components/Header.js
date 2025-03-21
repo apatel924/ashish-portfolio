@@ -1,18 +1,39 @@
+// src/components/Header.js
 import React from "react";
 
 const Header = () => {
-  const headerStyle = {
-    backgroundColor: "#0a192f",
+  const containerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  };
+
+  const nameStyle = {
+    fontSize: "3rem",
+    margin: 0,
     color: "#e6f1ff",
-    padding: "20px",
-    textAlign: "center",
+  };
+
+  const titleStyle = {
+    fontSize: "1.5rem",
+    margin: 0,
+    color: "#64ffda",
+  };
+
+  const paragraphStyle = {
+    maxWidth: "600px",
+    color: "#a8b2d1",
+    lineHeight: 1.5,
   };
 
   return (
-    <header style={headerStyle}>
-      <h1>Ashish Patel</h1>
-      <h2>Full Stack Web Developer</h2>
-    </header>
+    <div style={containerStyle}>
+      <h1 style={nameStyle}>Ashish Patel</h1>
+      <h2 style={titleStyle}>Full Stack Web Developer</h2>
+      <p style={paragraphStyle}>
+        I build accessible, pixel-perfect digital experiences for the web.
+      </p>
+    </div>
   );
 };
 
