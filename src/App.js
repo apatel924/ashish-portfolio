@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
+import Experience from "./components/Experience";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <main style={{ padding: "20px" }}>
         <h2>Welcome!</h2>
         <p>This is my personal website in progress.</p>
+        <Experience />
       </main>
     </div>
   );
