@@ -1,9 +1,8 @@
-// App.js
 import React from "react";
-import LeftSidebar from "./LeftSidebar";
-import AboutSection from "./AboutSection";
-import ExperienceSection from "./ExperienceSection";
-import ProjectsSection from "./ProjectsSection";
+import LeftSidebar from "./components/LeftSidebar";
+import AboutSection from "./components/AboutSection";
+import ExperienceSection from "./components/ExperienceSection";
+import ProjectsSection from "./components/ProjectsSection";
 
 function App() {
   const containerStyle = {
@@ -27,7 +26,7 @@ function App() {
     width: "50%",
     height: "100vh",
     overflowY: "auto",
-    padding: "40px",
+    padding: "50px",
     boxSizing: "border-box",
   };
 
