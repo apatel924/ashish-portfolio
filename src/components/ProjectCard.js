@@ -1,5 +1,5 @@
 import React from "react";
-// import Image from "import image here";
+// import Image from "next/image";
 import { ExternalLink, Star } from "lucide-react";
 import TechBadge from "./TechBadge";
 
@@ -13,6 +13,7 @@ function ProjectCard({
   downloads,
   year,
 }) {
+  // Base card style with transitions for hover effect
   const cardStyle = {
     display: "flex",
     flexDirection: "row",
@@ -20,8 +21,21 @@ function ProjectCard({
     padding: "20px",
     border: "1px solid #233554",
     borderRadius: "4px",
+    transition: "transform 0.3s, box-shadow 0.3s",
+    position: "relative",
   };
 
+  // Hover event handlers for the container
+  const handleMouseEnter = (e) => {
+    e.currentTarget.style.transform = "scale(1.02)";
+    e.currentTarget.style.boxShadow = "0 8px 20px rgba(100,255,218,0.1)";
+  };
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.transform = "scale(1)";
+    e.currentTarget.style.boxShadow = "none";
+  };
+
+  // Content
   const contentStyle = {
     flex: 1,
     marginRight: "20px",
@@ -44,6 +58,24 @@ function ProjectCard({
     lineHeight: 1.5,
   };
 
+  // Link icon style
+  const linkIconStyle = {
+    marginLeft: "5px",
+    width: "16px",
+    height: "16px",
+    color: "#8892b0",
+    transition: "color 0.3s, transform 0.3s",
+    cursor: "pointer",
+  };
+  const handleIconMouseEnter = (e) => {
+    e.target.style.color = "#64ffda";
+    e.target.style.transform = "scale(1.2)";
+  };
+  const handleIconMouseLeave = (e) => {
+    e.target.style.color = "#8892b0";
+    e.target.style.transform = "scale(1)";
+  };
+
   const techListStyle = {
     marginTop: "10px",
     display: "flex",
@@ -51,7 +83,11 @@ function ProjectCard({
   };
 
   return (
-    <div style={cardStyle}>
+    <div
+      style={cardStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div style={contentStyle}>
         {year && (
           <div style={{ fontSize: "0.9rem", color: "#8892b0" }}>{year}</div>
@@ -65,16 +101,19 @@ function ProjectCard({
           >
             {title}
           </a>
+          {/* External link icon (optional) */}
           <ExternalLink
-            style={{ marginLeft: "5px", width: "16px", height: "16px" }}
+            style={linkIconStyle}
+            onMouseEnter={handleIconMouseEnter}
+            onMouseLeave={handleIconMouseLeave}
           />
         </div>
         {description && <p style={descriptionStyle}>{description}</p>}
         {technologies && (
           <div style={techListStyle}>
-            {technologies.map((tech, index) => (
+            {technologies.map((tech, i) => (
               <div
-                key={index}
+                key={i}
                 style={{ marginRight: "10px", marginBottom: "10px" }}
               >
                 <TechBadge>{tech}</TechBadge>
@@ -131,6 +170,7 @@ function ProjectCard({
           </div>
         )}
       </div>
+
       <div style={imageContainerStyle}>
         {/* <Image
           src={image || "/placeholder.svg"}
