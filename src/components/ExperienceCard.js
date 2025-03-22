@@ -1,5 +1,5 @@
 import React from "react";
-// import { ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import TechBadge from "./TechBadge";
 
 function ExperienceCard({
@@ -11,6 +11,7 @@ function ExperienceCard({
   technologies,
   positions,
 }) {
+  // Base card style with transitions for hover effect
   const cardStyle = {
     display: "flex",
     flexDirection: "row",
@@ -18,8 +19,21 @@ function ExperienceCard({
     padding: "20px",
     border: "1px solid #233554",
     borderRadius: "4px",
+    transition: "transform 0.3s, box-shadow 0.3s",
+    position: "relative", // so we can manipulate the container
   };
 
+  // Hover event handlers for the container
+  const handleMouseEnter = (e) => {
+    e.currentTarget.style.transform = "scale(1.02)";
+    e.currentTarget.style.boxShadow = "0 8px 20px rgba(100,255,218,0.1)";
+  };
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.transform = "scale(1)";
+    e.currentTarget.style.boxShadow = "none";
+  };
+
+  // Left column: period
   const periodStyle = {
     fontFamily: "monospace",
     fontSize: "14px",
@@ -28,6 +42,7 @@ function ExperienceCard({
     minWidth: "120px",
   };
 
+  // Right column: content
   const contentStyle = {
     flex: 1,
   };
@@ -45,6 +60,24 @@ function ExperienceCard({
     lineHeight: 1.5,
   };
 
+  // Link icon style (if you want the ExternalLink to glow on hover)
+  const linkIconStyle = {
+    marginLeft: "5px",
+    width: "16px",
+    height: "16px",
+    color: "#8892b0",
+    transition: "color 0.3s, transform 0.3s",
+    cursor: "pointer",
+  };
+  const handleIconMouseEnter = (e) => {
+    e.target.style.color = "#64ffda";
+    e.target.style.transform = "scale(1.2)";
+  };
+  const handleIconMouseLeave = (e) => {
+    e.target.style.color = "#8892b0";
+    e.target.style.transform = "scale(1)";
+  };
+
   const techListStyle = {
     marginTop: "10px",
     display: "flex",
@@ -52,7 +85,11 @@ function ExperienceCard({
   };
 
   return (
-    <div style={cardStyle}>
+    <div
+      style={cardStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div style={periodStyle}>{period}</div>
       <div style={contentStyle}>
         <div style={titleStyle}>
@@ -65,6 +102,12 @@ function ExperienceCard({
           >
             {company}
           </a>
+          {/* External link icon (optional) */}
+          <ExternalLink
+            style={linkIconStyle}
+            onMouseEnter={handleIconMouseEnter}
+            onMouseLeave={handleIconMouseLeave}
+          />
         </div>
         {positions && positions.length > 0 && (
           <div style={{ fontSize: "0.9rem", color: "#8892b0" }}>
@@ -74,9 +117,7 @@ function ExperienceCard({
         <p style={descriptionStyle}>{description}</p>
         <div style={techListStyle}>
           {technologies.map((tech, i) => (
-            <div key={i} style={{ marginRight: "10px", marginBottom: "10px" }}>
-              <TechBadge>{tech}</TechBadge>
-            </div>
+            <TechBadge key={i}>{tech}</TechBadge>
           ))}
         </div>
       </div>
