@@ -1,53 +1,46 @@
+// src/App.js
 import React from "react";
 import LeftSidebar from "./components/LeftSidebar";
 import AboutSection from "./components/AboutSection";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
-import Footer from "./components/Footer";
 
 function App() {
   const containerStyle = {
     display: "flex",
+    width: "100%",
     minHeight: "100vh",
     backgroundColor: "#0a192f",
     color: "#e6f1ff",
+    margin: 0,
+    padding: 0,
+    boxSizing: "border-box",
   };
 
-  // Left (sticky) column
-  const sidebarStyle = {
-    width: "300px",
-    position: "sticky",
-    top: 0,
-    alignSelf: "flex-start",
-    height: "100vh",
-    backgroundColor: "#112240",
+  // Left side: 50% width
+  const leftStyle = {
+    width: "50%",
   };
 
-  // Right (main) column
-  const mainStyle = {
-    flex: 1,
-    padding: "40px 60px",
-    // If you want the entire browser to scroll, omit overflow here
-    // overflow: 'auto',
+  // Right side: 50% width
+  const rightStyle = {
+    width: "50%",
+    padding: "60px",
+    boxSizing: "border-box",
   };
 
   return (
     <div style={containerStyle}>
-      <div style={sidebarStyle}>
+      {/* Left half */}
+      <div style={leftStyle}>
         <LeftSidebar />
       </div>
 
-      <div style={mainStyle}>
-        <section id="about">
-          <AboutSection />
-        </section>
-        <section id="experience">
-          <Experience />
-        </section>
-        <section id="projects">
-          <Projects />
-        </section>
-        <Footer />
+      {/* Right half */}
+      <div style={rightStyle}>
+        <AboutSection />
+        <Experience />
+        <Projects />
       </div>
     </div>
   );
