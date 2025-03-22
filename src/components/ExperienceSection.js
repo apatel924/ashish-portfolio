@@ -16,7 +16,7 @@ function ExperienceSection() {
 
   return (
     <div id="experience" style={containerStyle}>
-      <h2 style={headingStyle}>Experience</h2>
+      {/* <h2 style={headingStyle}>Experience</h2> */}
       {experienceData?.map((job, index) => (
         <ExperienceCard key={index} {...job} />
       ))}
