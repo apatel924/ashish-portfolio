@@ -1,4 +1,3 @@
-// src/AboutSection.js
 import React from "react";
 
 function AboutSection() {
@@ -7,14 +6,14 @@ function AboutSection() {
   };
 
   const headingStyle = {
-    fontSize: "2.5rem",
+    fontSize: "3rem",
     fontWeight: "bold",
     marginBottom: "20px",
     color: "#ffffff",
   };
 
   const paragraphStyle = {
-    fontSize: "1.2rem",
+    fontSize: "1.25rem",
     color: "#a8b2d1",
     lineHeight: 1.6,
     maxWidth: "600px",
