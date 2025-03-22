@@ -1,118 +1,120 @@
-// src/LeftSidebar.js
+// LeftSidebar.js
 import React from "react";
 import SocialLinks from "./SocialLinks";
 
 function LeftSidebar() {
   const containerStyle = {
-    height: "100vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "60px",
+    height: "100%",
+    padding: "60px 20px",
     textAlign: "center",
     boxSizing: "border-box",
   };
 
+  const topStyle = {
+    marginTop: "20px",
+  };
+
   const nameStyle = {
-    fontSize: "4rem",
+    fontSize: "5rem", // very large name
+    fontWeight: "bold",
     margin: 0,
     color: "#ffffff",
   };
 
   const titleStyle = {
-    fontSize: "2rem",
+    fontSize: "2.5rem",
     color: "#64ffda",
-    margin: "10px 0 30px 0",
+    margin: "20px 0",
   };
 
   const bioStyle = {
-    fontSize: "1.2rem",
+    fontSize: "1.25rem",
     color: "#a8b2d1",
-    maxWidth: "250px",
-    lineHeight: 1.4,
+    maxWidth: "300px",
     margin: "0 auto",
   };
 
-  const navStyle = {
-    marginTop: "40px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "20px",
-  };
-
-  const linkContainerStyle = {
+  const navItemStyle = {
     display: "flex",
     alignItems: "center",
+    margin: "15px 0",
   };
 
   const dashStyle = {
     borderLeft: "2px dashed #8892b0",
-    height: "16px",
-    marginRight: "8px",
+    height: "20px",
+    marginRight: "10px",
   };
 
-  const linkStyle = {
-    fontSize: "1.2rem",
+  const navLinkStyle = {
+    fontSize: "1.5rem",
     color: "#e6f1ff",
     textDecoration: "none",
-    transition: "color 0.2s ease",
+    transition: "color 0.3s",
   };
 
-  const handleLinkHover = (e) => {
+  const socialStyle = {
+    marginBottom: "20px",
+  };
+
+  const handleLinkMouseEnter = (e) => {
     e.target.style.color = "#64ffda";
   };
 
-  const handleLinkLeave = (e) => {
+  const handleLinkMouseLeave = (e) => {
     e.target.style.color = "#e6f1ff";
   };
 
   return (
     <div style={containerStyle}>
-      <div>
+      <div style={topStyle}>
         <h1 style={nameStyle}>Ashish Patel</h1>
         <h2 style={titleStyle}>Full Stack Web Developer</h2>
         <p style={bioStyle}>
           I build accessible, pixel‑perfect digital experiences for the web.
         </p>
-        <div style={navStyle}>
-          <div style={linkContainerStyle}>
+        <nav>
+          <div style={navItemStyle}>
             <div style={dashStyle} />
             <a
               href="#about"
-              style={linkStyle}
-              onMouseEnter={handleLinkHover}
-              onMouseLeave={handleLinkLeave}
+              style={navLinkStyle}
+              onMouseEnter={handleLinkMouseEnter}
+              onMouseLeave={handleLinkMouseLeave}
             >
               About Me
             </a>
           </div>
-          <div style={linkContainerStyle}>
+          <div style={navItemStyle}>
             <div style={dashStyle} />
             <a
               href="#experience"
-              style={linkStyle}
-              onMouseEnter={handleLinkHover}
-              onMouseLeave={handleLinkLeave}
+              style={navLinkStyle}
+              onMouseEnter={handleLinkMouseEnter}
+              onMouseLeave={handleLinkMouseLeave}
             >
               Experience
             </a>
           </div>
-          <div style={linkContainerStyle}>
+          <div style={navItemStyle}>
             <div style={dashStyle} />
             <a
               href="#projects"
-              style={linkStyle}
-              onMouseEnter={handleLinkHover}
-              onMouseLeave={handleLinkLeave}
+              style={navLinkStyle}
+              onMouseEnter={handleLinkMouseEnter}
+              onMouseLeave={handleLinkMouseLeave}
             >
               Projects
             </a>
           </div>
-        </div>
+        </nav>
       </div>
-      <div>
-        <SocialLinks vertical={true} />
+      <div style={socialStyle}>
+        <SocialLinks vertical />
       </div>
     </div>
   );
