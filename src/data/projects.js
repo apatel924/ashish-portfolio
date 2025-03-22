@@ -2,15 +2,22 @@ export const projectsData = [
   {
     title: "Quiz Arena",
     description:
-      "An interactive quiz platform designed to provide an engaging user experience...",
+      "Quiz Arena is an interactive quiz platform designed to deliver a captivating user experience. I spearheaded the redesign and full functionality implementation for the solo mode, developed a customizable profile page using React components, and optimized the backend image rendering to achieve a 75% reduction in load times. The project also features a reorganized quiz category structure, a revamped homepage layout to reduce user overload, and an interactive leaderboard.",
     technologies: [
       "React.js",
       "React Native",
       "Node.js",
       "Express",
       "MongoDB",
+      "PostgreSQL",
       "Socket.io",
       "Expo",
+      "Storybook",
+      "Jest",
+      "Sentry",
+      "Tailwind CSS",
+      "Material UI",
+      "Apple Development",
     ],
     thumbnail: "/images/quiz-arena.png",
     link: "https://quizarena.app",
@@ -18,12 +25,13 @@ export const projectsData = [
   {
     title: "Remote-Together",
     description:
-      "Platform with the ability to find specific remote working locations...",
+      "Remote-Together is a platform that helps remote workers and students discover ideal work locations. The project features a built-in chat forum, user authentication, and a dynamic map with location markers for points of interest and business details. It integrates Google Maps API, providing a seamless, interactive experience for users seeking remote working environments.",
     technologies: [
-      "React.js",
       "Google Maps API",
+      "React.js",
       "Material UI",
       "Tailwind CSS",
+      "Axios",
       "Node.js",
       "Express",
       "PostgreSQL",
@@ -34,18 +42,31 @@ export const projectsData = [
   {
     title: "Resource-Wall",
     description:
-      "A Pinterest-like app with the ability to create new resource links...",
-    technologies: ["Node.js", "PostgreSQL", "EJS", "Express", "SASS"],
+      "Resource-Wall is a Pinterest-inspired platform that enables users to create, edit, and manage resource links. The app features the ability to like and favorite content, alongside robust search functionality, providing a streamlined experience for content discovery and curation.",
+    technologies: [
+      "Node.js",
+      "PostgreSQL",
+      "EJS",
+      "Express",
+      "Morgan",
+      "Sass",
+      "bcryptjs",
+      "Body-Parser",
+      "Cookie-Session",
+      "dotenv",
+    ],
     thumbnail: "/images/resource-wall.png",
   },
   {
     title: "Interview Scheduler",
     description:
-      "A React app that works as an appointment scheduler with multiple testing tools...",
+      "Interview Scheduler is a robust React application that facilitates appointment scheduling with full CRUD capabilities. It enables users to add, edit, and delete appointments across multiple days, and is extensively tested with Storybook, Jest, and Cypress to ensure reliability and a smooth, responsive user experience.",
     technologies: [
       "React",
       "Webpack",
+      "Babel",
       "Axios",
+      "WebSockets",
       "Storybook",
       "Jest",
       "Testing Library",
