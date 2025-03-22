@@ -5,6 +5,8 @@ import { experienceData } from "../data/experiences";
 function ExperienceSection() {
   const containerStyle = {
     marginBottom: "60px",
+    width: "100%",
+    maxWidth: "1200px", // Added maxWidth to increase container size
   };
 
   const headingStyle = {

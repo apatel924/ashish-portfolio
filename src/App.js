@@ -18,7 +18,7 @@ function App() {
   };
 
   const leftStyle = {
-    width: "50%",
+    width: "43%",
     position: "fixed", // Fix left sidebar in place
     height: "100vh",
     overflow: "hidden",
@@ -26,8 +26,8 @@ function App() {
   };
 
   const rightStyle = {
-    width: "50%",
-    marginLeft: "50%", // Offset by width of fixed left sidebar
+    width: "57%",
+    marginLeft: "46%", // Offset by width of fixed left sidebar
     minHeight: "100vh",
     padding: "50px",
     boxSizing: "border-box",

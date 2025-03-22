@@ -20,6 +20,8 @@ function ExperienceCard({
     gap: "100px", // Increased gap between date and content
     padding: "8px", // Added some padding
     borderRadius: "4px",
+    width: "100%", // Take up full width
+    maxWidth: "1200px", // Increased max width
     transition:
       "transform 0.3s, box-shadow 0.3s, background-color 0.3s, border 0.3s",
     // No border or background color by default
@@ -53,7 +55,7 @@ function ExperienceCard({
   // Content column
   const contentStyle = {
     flex: 1,
-    maxWidth: "800px", // Increased max-width
+    maxWidth: "1000px", // Increased max-width
   };
 
   const titleStyle = {
