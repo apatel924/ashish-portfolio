@@ -14,22 +14,24 @@ function App() {
     margin: 0,
     padding: 0,
     boxSizing: "border-box",
+    overflowY: "auto", // Allow scrolling on entire container
   };
 
   const leftStyle = {
     width: "50%",
+    position: "fixed", // Fix left sidebar in place
     height: "100vh",
     overflow: "hidden",
-    paddingLeft: "100px",
+    paddingLeft: "160px",
   };
 
   const rightStyle = {
     width: "50%",
-    height: "100vh",
-    overflowY: "auto",
+    marginLeft: "50%", // Offset by width of fixed left sidebar
+    minHeight: "100vh",
     padding: "50px",
     boxSizing: "border-box",
-    paddingRight: "100px",
+    paddingRight: "160px",
   };
 
   return (
