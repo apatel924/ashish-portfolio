@@ -1,3 +1,4 @@
+// ExperienceCard.js
 import React from "react";
 import { ExternalLink } from "lucide-react";
 import TechBadge from "./TechBadge";
@@ -11,56 +12,69 @@ function ExperienceCard({
   technologies,
   positions,
 }) {
-  // Base card style with transitions for hover effect
+  // Default style: no border or background
   const cardStyle = {
+    position: "relative",
+    marginBottom: "48px", // Increased bottom margin between cards
     display: "flex",
-    flexDirection: "row",
-    marginBottom: "20px",
-    padding: "20px",
-    border: "1px solid #233554",
+    gap: "100px", // Increased gap between date and content
+    padding: "8px", // Added some padding
     borderRadius: "4px",
-    transition: "transform 0.3s, box-shadow 0.3s",
-    position: "relative", // so we can manipulate the container
+    transition:
+      "transform 0.3s, box-shadow 0.3s, background-color 0.3s, border 0.3s",
+    // No border or background color by default
   };
 
-  // Hover event handlers for the container
+  // Hover event handlers
   const handleMouseEnter = (e) => {
+    // Subtle border + background color on hover
+    e.currentTarget.style.border = "1px solid #233554";
+    e.currentTarget.style.backgroundColor = "rgba(100,255,218,0.03)";
     e.currentTarget.style.transform = "scale(1.02)";
     e.currentTarget.style.boxShadow = "0 8px 20px rgba(100,255,218,0.1)";
   };
   const handleMouseLeave = (e) => {
+    // Revert to default
+    e.currentTarget.style.border = "none";
+    e.currentTarget.style.backgroundColor = "transparent";
     e.currentTarget.style.transform = "scale(1)";
     e.currentTarget.style.boxShadow = "none";
   };
 
-  // Left column: period
+  // Period column
   const periodStyle = {
     fontFamily: "monospace",
     fontSize: "14px",
     color: "#8892b0",
-    marginRight: "20px",
-    minWidth: "120px",
+    minWidth: "140px",
+    paddingTop: "8px", // Align with title
   };
 
-  // Right column: content
+  // Content column
   const contentStyle = {
     flex: 1,
+    maxWidth: "800px", // Increased max-width
   };
 
   const titleStyle = {
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-    color: "#e6f1ff",
-    margin: "8px 0",
+    fontSize: "20px", // Increased font size
+    fontWeight: "500",
+    color: "#e6f1ff", // Lighter color for better contrast
+    marginBottom: "12px",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
   };
 
   const descriptionStyle = {
-    fontSize: "1rem",
-    color: "#a8b2d1",
-    lineHeight: 1.5,
+    fontSize: "17px", // Increased font size
+    color: "#a8b2d1", // Lighter gray for better readability
+    lineHeight: "1.7", // Increased line height
+    marginTop: "24px",
+    marginBottom: "24px",
   };
 
-  // Link icon style (if you want the ExternalLink to glow on hover)
+  // External link icon
   const linkIconStyle = {
     marginLeft: "5px",
     width: "16px",
@@ -79,9 +93,10 @@ function ExperienceCard({
   };
 
   const techListStyle = {
-    marginTop: "10px",
+    marginTop: "24px",
     display: "flex",
     flexWrap: "wrap",
+    gap: "16px", // Increased gap between tech badges
   };
 
   return (
@@ -110,7 +125,14 @@ function ExperienceCard({
           />
         </div>
         {positions && positions.length > 0 && (
-          <div style={{ fontSize: "0.9rem", color: "#8892b0" }}>
+          <div
+            style={{
+              fontSize: "16px",
+              color: "#8892b0",
+              marginTop: "8px",
+              marginBottom: "16px",
+            }}
+          >
             {positions.join(" | ")}
           </div>
         )}
