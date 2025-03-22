@@ -20,6 +20,7 @@ function App() {
     width: "50%",
     height: "100vh",
     overflow: "hidden",
+    paddingLeft: "100px",
   };
 
   const rightStyle = {
@@ -28,6 +29,7 @@ function App() {
     overflowY: "auto",
     padding: "50px",
     boxSizing: "border-box",
+    paddingRight: "100px",
   };
 
   return (
