@@ -1,9 +1,9 @@
-// src/App.js
+// App.js
 import React from "react";
-import LeftSidebar from "./components/LeftSidebar";
-import AboutSection from "./components/AboutSection";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
+import LeftSidebar from "./LeftSidebar";
+import AboutSection from "./AboutSection";
+import ExperienceSection from "./ExperienceSection";
+import ProjectsSection from "./ProjectsSection";
 
 function App() {
   const containerStyle = {
@@ -17,30 +17,29 @@ function App() {
     boxSizing: "border-box",
   };
 
-  // Left side: 50% width
   const leftStyle = {
     width: "50%",
+    height: "100vh",
+    overflow: "hidden",
   };
 
-  // Right side: 50% width
   const rightStyle = {
     width: "50%",
-    padding: "60px",
+    height: "100vh",
+    overflowY: "auto",
+    padding: "40px",
     boxSizing: "border-box",
   };
 
   return (
     <div style={containerStyle}>
-      {/* Left half */}
       <div style={leftStyle}>
         <LeftSidebar />
       </div>
-
-      {/* Right half */}
       <div style={rightStyle}>
         <AboutSection />
-        <Experience />
-        <Projects />
+        <ExperienceSection />
+        <ProjectsSection />
       </div>
     </div>
   );
