@@ -5,23 +5,23 @@ function AboutSection() {
     marginBottom: "60px",
   };
 
-  const headingStyle = {
-    fontSize: "3rem",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    color: "#ffffff",
-  };
+  //   const headingStyle = {
+  //     fontSize: "3rem",
+  //     fontWeight: "bold",
+  //     marginBottom: "20px",
+  //     color: "#ffffff",
+  //   };
 
   const paragraphStyle = {
-    fontSize: "1.25rem",
+    fontSize: "1.5rem",
     color: "#a8b2d1",
     lineHeight: 1.6,
-    maxWidth: "600px",
+    maxWidth: "1200px",
   };
 
   return (
     <div id="about" style={containerStyle}>
-      <h2 style={headingStyle}>About Me</h2>
+      {/* <h2 style={headingStyle}>About Me</h2> */}
       <p style={paragraphStyle}>
         I’m a Full Stack Web Developer based in Edmonton, Alberta. With a
         background in Psychology and Chemistry from the University of Alberta
