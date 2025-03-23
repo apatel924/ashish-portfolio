@@ -4,17 +4,17 @@ import { experienceData } from "../data/experiences";
 
 function ExperienceSection() {
   const containerStyle = {
-    marginBottom: "60px",
+    marginBottom: "100px",
     width: "100%",
     maxWidth: "1200px", // Added maxWidth to increase container size
   };
 
-  const headingStyle = {
-    fontSize: "3rem",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    color: "#ffffff",
-  };
+  // const headingStyle = {
+  //   fontSize: "3rem",
+  //   fontWeight: "bold",
+  //   marginBottom: "20px",
+  //   color: "#ffffff",
+  // };
 
   return (
     <div id="experience" style={containerStyle}>
