@@ -59,7 +59,7 @@ function ExperienceCard({
   };
 
   const titleStyle = {
-    fontSize: "20px", // Increased font size
+    fontSize: "30px", // Increased font size
     fontWeight: "500",
     color: "#e6f1ff", // Lighter color for better contrast
     marginBottom: "12px",
@@ -69,7 +69,7 @@ function ExperienceCard({
   };
 
   const descriptionStyle = {
-    fontSize: "17px", // Increased font size
+    fontSize: "20px", // Increased font size
     color: "#a8b2d1", // Lighter gray for better readability
     lineHeight: "1.7", // Increased line height
     marginTop: "24px",
