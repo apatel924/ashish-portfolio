@@ -5,12 +5,12 @@ function TechBadge({ children }) {
     display: "inline-flex",
     alignItems: "center",
     borderRadius: "9999px",
-    backgroundColor: "rgba(31,41,55,0.5)",
+    backgroundColor: "rgba(100,255,218,0.1)", // Cool green background with transparency
     padding: "4px 12px",
-    fontSize: "0.75rem",
+    fontSize: "1.25rem",
     fontWeight: "500",
-    color: "#cbd5e1",
-    border: "1px solid rgba(75,85,99,0.5)",
+    color: "#64ffda", // Bright green text that pops
+    border: "1px solid rgba(100,255,218,0.3)", // Subtle green border
     transition: "background-color 0.3s, color 0.3s",
   };
 
