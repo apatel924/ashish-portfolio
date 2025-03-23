@@ -1,5 +1,6 @@
 import React from "react";
 import SocialLinks from "./SocialLinks";
+import linkedinImg from "../images/linkedin-img.jpeg";
 
 function LeftSidebar() {
   // Container for the entire left column
@@ -9,24 +10,36 @@ function LeftSidebar() {
     justifyContent: "flex-start",
     alignItems: "flex-start",
     height: "100%",
-    padding: "80px 60px",
+    padding: "80px 100px",
     boxSizing: "border-box",
   };
 
   // Large name
   const nameStyle = {
-    fontSize: "4rem",
+    fontSize: "5rem",
     fontWeight: "bold",
     margin: 0,
     color: "#ffffff",
     lineHeight: 1.2,
+    marginBottom: "40px", // Added spacing
+  };
+
+  // Profile image
+  const imageStyle = {
+    width: "200px",
+    height: "200px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    marginTop: "20px",
+    marginBottom: "40px", // Increased spacing
+    border: "2px solid #64ffda",
   };
 
   // Sub-title
   const titleStyle = {
     fontSize: "1.75rem",
     color: "#64ffda",
-    margin: "16px 0 24px 0",
+    margin: "16px 0 40px 0", // Increased bottom margin
     lineHeight: 1.3,
   };
 
@@ -36,14 +49,14 @@ function LeftSidebar() {
     color: "#a8b2d1",
     maxWidth: "400px",
     lineHeight: 1.6,
-    marginBottom: "40px",
+    marginBottom: "60px", // Increased spacing
   };
 
   // Nav container
   const navStyle = {
     display: "flex",
     flexDirection: "column",
-    gap: "16px",
+    gap: "24px", // Increased gap between nav items
     marginBottom: "auto", // pushes social links to bottom
   };
 
@@ -58,10 +71,19 @@ function LeftSidebar() {
     height: "1px",
     backgroundColor: "#8892b0",
     marginRight: "10px",
+    transition: "all 0.3s ease",
+    boxShadow: "none",
+  };
+
+  const dashHoverStyle = {
+    width: "30px",
+    height: "2px",
+    backgroundColor: "#64ffda",
+    boxShadow: "0 0 8px #64ffda",
   };
 
   const navLinkStyle = {
-    fontSize: "0.9rem",
+    fontSize: "1rem",
     color: "#e6f1ff",
     textDecoration: "none",
     textTransform: "uppercase",
@@ -69,22 +91,30 @@ function LeftSidebar() {
     transition: "color 0.3s",
   };
 
-  // Hover effect for nav links
+  // Hover effect for nav links and dash
   const handleLinkMouseEnter = (e) => {
     e.target.style.color = "#64ffda";
+    // Find the previous sibling (dash) and apply hover styles
+    const dash = e.target.parentElement.querySelector("div");
+    Object.assign(dash.style, dashHoverStyle);
   };
+
   const handleLinkMouseLeave = (e) => {
     e.target.style.color = "#e6f1ff";
+    // Reset dash styles
+    const dash = e.target.parentElement.querySelector("div");
+    Object.assign(dash.style, dashStyle);
   };
 
   // Social icons pinned at bottom, horizontally aligned
   const socialContainerStyle = {
-    marginTop: "40px",
+    marginTop: "60px", // Increased spacing
   };
 
   return (
     <div style={containerStyle}>
       <h1 style={nameStyle}>Ashish Patel</h1>
+      <img src={linkedinImg} alt="Ashish Patel" style={imageStyle} />
       <h2 style={titleStyle}>Full Stack Web Developer</h2>
       <p style={paragraphStyle}>
         I build accessible, pixel‑perfect digital experiences for the web.
