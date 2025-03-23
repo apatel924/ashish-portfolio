@@ -16,19 +16,19 @@ export const experienceData = [
     technologies: ["React.js", "Node.js", "Express", "REST APIs", "Figma"],
   },
   {
-    period: "2021-12 – 2024-01",
-    title: "Manager / Optician",
-    company: "Bright Vision Optical",
-    description:
-      "I balanced team collaboration with independent management to oversee daily operations, patient follow-up, and accounting. I continuously improved workflows through professional development and maintained operational efficiency to ensure smooth clinic operations.",
-    technologies: [],
-  },
-  {
     period: "2023-06 – 2023-12",
     title: "Full Stack Developer",
     company: "GamerCoach",
     description:
       "At GamerCoach, I led multiple UI/UX redesign initiatives to enhance the user experience for gamers and coaches. I implemented responsive, multi-page setups with Next.js, integrated interactive animations, developed a scheduling calendar system, and optimized SEO to boost visibility and engagement.",
     technologies: ["Next.js", "React.js", "Node.js", "SEO"],
+  },
+  {
+    period: "2021-12 – 2024-01",
+    title: "Manager / Optician",
+    company: "Bright Vision Optical",
+    description:
+      "I balanced team collaboration with independent management to oversee daily operations, patient follow-up, and accounting. I continuously improved workflows through professional development and maintained operational efficiency to ensure smooth clinic operations.",
+    technologies: [],
   },
 ];
