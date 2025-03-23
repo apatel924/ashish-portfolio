@@ -4,19 +4,21 @@ import { projectsData } from "../data/projects";
 
 function ProjectsSection() {
   const containerStyle = {
-    marginBottom: "60px",
+    marginBottom: "100px",
+    width: "100%",
+    maxWidth: "1200px",
   };
 
-  const headingStyle = {
-    fontSize: "3rem",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    color: "#ffffff",
-  };
+  // const headingStyle = {
+  //   fontSize: "3rem",
+  //   fontWeight: "bold",
+  //   marginBottom: "20px",
+  //   color: "#ffffff",
+  // };
 
   return (
     <div id="projects" style={containerStyle}>
-      <h2 style={headingStyle}>Projects</h2>
+      {/* <h2 style={headingStyle}>Projects</h2> */}
       {projectsData.map((project, index) => (
         <ProjectCard key={index} {...project} />
       ))}
