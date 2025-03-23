@@ -1,17 +1,17 @@
 import React from "react";
-import { Github, Linkedin, Codepen, Instagram, BookOpen } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 function SocialLinks({ vertical = false }) {
   const containerStyle = {
     display: "flex",
     flexDirection: vertical ? "column" : "row",
     alignItems: "center",
-    gap: vertical ? "24px" : "20px",
+    gap: vertical ? "31px" : "26px", // Increased spacing by 10%
   };
 
   const linkStyle = {
     color: "#8892b0",
-    fontSize: "1.5rem",
+    fontSize: "2rem", // Increased font size
     transition: "color 0.3s, transform 0.3s",
   };
 
@@ -25,32 +25,21 @@ function SocialLinks({ vertical = false }) {
     e.target.style.transform = "scale(1)";
   };
 
-  // ~24px icons
   const socialLinks = [
     {
-      icon: <Github style={{ width: "24px", height: "24px" }} />,
-      href: "https://github.com",
+      icon: <Github style={{ width: "31px", height: "31px" }} />, // Increased by 10%
+      href: "https://github.com/apatel924",
       label: "GitHub",
     },
     {
-      icon: <Linkedin style={{ width: "24px", height: "24px" }} />,
-      href: "https://linkedin.com",
+      icon: <Linkedin style={{ width: "31px", height: "31px" }} />, // Increased by 10%
+      href: "https://www.linkedin.com/in/ashish-patel-0b13a2219",
       label: "LinkedIn",
     },
     {
-      icon: <Codepen style={{ width: "24px", height: "24px" }} />,
-      href: "https://codepen.io",
-      label: "CodePen",
-    },
-    {
-      icon: <Instagram style={{ width: "24px", height: "24px" }} />,
-      href: "https://instagram.com",
-      label: "Instagram",
-    },
-    {
-      icon: <BookOpen style={{ width: "24px", height: "24px" }} />,
-      href: "https://goodreads.com",
-      label: "Goodreads",
+      icon: <Mail style={{ width: "31px", height: "31px" }} />, // Increased by 10%
+      href: "mailto:a.patel38@hotmail.com",
+      label: "Email",
     },
   ];
 
