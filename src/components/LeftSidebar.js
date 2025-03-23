@@ -2,6 +2,9 @@ import React from "react";
 import SocialLinks from "./SocialLinks";
 import linkedinImg from "../images/linkedin-img.jpeg";
 
+//add diploma certification pop up thing, can show the diploma in full screen
+//add resume on left side
+
 function LeftSidebar() {
   // Container for the entire left column
   const containerStyle = {
