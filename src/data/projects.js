@@ -20,7 +20,7 @@ export const projectsData = [
       "Apple Development",
     ],
     thumbnail: "/images/quiz-arena.png",
-    link: "https://quizarena.app",
+    link: "https://linktr.ee/quizarena",
   },
   {
     title: "Remote-Together",
@@ -38,6 +38,7 @@ export const projectsData = [
       "Socket.io",
     ],
     thumbnail: "/images/remote-together.png",
+    link: "https://github.com/apatel924/remote_together",
   },
   {
     title: "Resource-Wall",
@@ -56,6 +57,7 @@ export const projectsData = [
       "dotenv",
     ],
     thumbnail: "/images/resource-wall.png",
+    link: "https://github.com/roylyh/Resource-Wall",
   },
   {
     title: "Interview Scheduler",
@@ -72,5 +74,6 @@ export const projectsData = [
       "Testing Library",
     ],
     thumbnail: "/images/interview-scheduler.png",
+    link: "https://github.com/apatel924/scheduler",
   },
 ];
