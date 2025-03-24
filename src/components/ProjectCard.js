@@ -46,16 +46,21 @@ function ProjectCard({
   };
 
   const titleStyle = {
-    fontSize: "1.5rem",
-    fontWeight: "bold",
+    fontSize: "30px",
+    fontWeight: "500",
     color: "#e6f1ff",
-    margin: "8px 0",
+    marginBottom: "12px",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
   };
 
   const descriptionStyle = {
-    fontSize: "1rem",
+    fontSize: "20px",
     color: "#a8b2d1",
-    lineHeight: 1.5,
+    lineHeight: "1.7",
+    marginTop: "24px",
+    marginBottom: "24px",
   };
 
   // Link icon style
@@ -77,9 +82,10 @@ function ProjectCard({
   };
 
   const techListStyle = {
-    marginTop: "10px",
+    marginTop: "24px",
     display: "flex",
     flexWrap: "wrap",
+    gap: "16px",
   };
 
   return (
