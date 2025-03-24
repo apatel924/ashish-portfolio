@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { projectsData } from "../data/projects";
-import ProjectModal from "./ProjectModal";
+import ProjectCoverflowModal from "./ProjectCoverflowModal";
 
 function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedImages, setSelectedImages] = useState(null);
+
+  const handleOpenModal = (images) => {
+    setSelectedImages(images);
+  };
+  const handleCloseModal = () => {
+    setSelectedImages(null);
+  };
 
   const containerStyle = {
     marginBottom: "100px",
     width: "100%",
     maxWidth: "1200px",
-  };
-
-  // Open the modal with the clicked project
-  const handleOpenModal = (project) => {
-    setSelectedProject(project);
-  };
-
-  // Close the modal
-  const handleCloseModal = () => {
-    setSelectedProject(null);
   };
 
   return (
@@ -28,12 +25,16 @@ function ProjectsSection() {
         <ProjectCard
           key={index}
           {...project}
-          onCardClick={() => handleOpenModal(project)}
+          // pass callback for onImageClick
+          onImageClick={() => handleOpenModal(project.images)}
         />
       ))}
 
-      {/* Modal for the selected project */}
-      <ProjectModal project={selectedProject} onClose={handleCloseModal} />
+      {/* Cover flow modal */}
+      <ProjectCoverflowModal
+        images={selectedImages}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
