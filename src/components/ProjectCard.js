@@ -38,7 +38,7 @@ function ProjectCard({
   const imageContainerStyle = {
     flexShrink: 0,
     width: "250px", // or any width you prefer
-    maxHeight: "320px", // Add max height to prevent overly tall images
+    maxHeight: "350px", // Add max height to prevent overly tall images
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -53,7 +53,7 @@ function ProjectCard({
   const imageStyle = {
     width: "100%",
     height: "100%",
-    maxHeight: "320px", // Match container max height
+    maxHeight: "350px", // Match container max height
     objectFit: "cover", // fill container top-to-bottom
   };
 
@@ -74,15 +74,20 @@ function ProjectCard({
     marginBottom: "12px",
     display: "flex",
     alignItems: "center",
-    gap: "8px",
+    gap: "10px",
   };
 
   const descriptionStyle = {
     fontSize: "20px",
     color: "#a8b2d1",
     lineHeight: "1.7",
-    marginTop: "24px",
-    marginBottom: "24px",
+    marginTop: "40px",
+    marginBottom: "40px",
+    display: "-webkit-box",
+    WebkitLineClamp: "3",
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   };
 
   // Link icon styling
