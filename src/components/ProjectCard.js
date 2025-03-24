@@ -18,7 +18,6 @@ function ProjectCard({
     display: "flex",
     flexDirection: "row",
     marginBottom: "20px",
-    border: "1px solid #233554",
     borderRadius: "4px",
     transition: "transform 0.3s, box-shadow 0.3s",
     position: "relative",
@@ -102,7 +101,7 @@ function ProjectCard({
     marginTop: "24px",
     display: "flex",
     flexWrap: "wrap",
-    gap: "16px",
+    gap: "5px",
   };
 
   return (
