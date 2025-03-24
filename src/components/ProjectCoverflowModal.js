@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 
-/**
- * props:
- *  images: string[]  // array of image URLs
- *  onClose: function // callback to close the modal
- */
 function ProjectCoverflowModal({ images, onClose }) {
-  // If no images or empty => don't render anything
+  // If no images or empty => don't render
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!images || images.length === 0) return null;
 
-  // Blurred backdrop for an Apple-like vibe
+  // BACKDROP: Apple-like blurred background
   const backdropStyle = {
     position: "fixed",
     top: 0,
@@ -27,7 +22,7 @@ function ProjectCoverflowModal({ images, onClose }) {
     zIndex: 9999,
   };
 
-  // Modal container: ~80% of screen for a bigger display
+  // MODAL CONTAINER: ~80% viewport for consistent sizing
   const modalContainerStyle = {
     width: "80vw",
     height: "80vh",
@@ -37,12 +32,12 @@ function ProjectCoverflowModal({ images, onClose }) {
     borderRadius: "16px",
     position: "relative",
     overflow: "hidden",
+    boxShadow: "0 2px 20px rgba(0,0,0,0.2)",
     display: "flex",
     flexDirection: "column",
-    boxShadow: "0 2px 20px rgba(0,0,0,0.2)",
   };
 
-  // Close button
+  // CLOSE BUTTON
   const closeButtonStyle = {
     position: "absolute",
     top: "10px",
@@ -55,43 +50,30 @@ function ProjectCoverflowModal({ images, onClose }) {
     zIndex: 2,
   };
 
-  // 3D container for horizontal cover flow
+  // CAROUSEL WRAPPER: perspective for 3D
   const carouselStyle = {
     flex: 1,
     position: "relative",
-    perspective: "1200px",
+    perspective: "1000px",
     overflow: "hidden",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   };
 
-  // Next/Prev button container
-  const navBarStyle = {
-    position: "absolute",
-    bottom: "20px",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    gap: "16px",
-    zIndex: 2,
-  };
-
-  const navButtonStyle = {
-    backgroundColor: "#f0f0f0",
-    color: "#333",
-    border: "none",
-    borderRadius: "4px",
-    padding: "8px 16px",
-    cursor: "pointer",
-    fontSize: "1rem",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
-  };
-
-  // Stop click from closing modal if user clicks inside
+  // STOP clicks from closing modal if user clicks inside
   const stopPropagation = (e) => e.stopPropagation();
 
-  // Next/Prev logic
+  // HORIZONTAL CLICK => left half = prev, right half = next
+  const handleCarouselClick = (e) => {
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width / 2) {
+      handlePrev();
+    } else {
+      handleNext();
+    }
+  };
+
+  // SHIFT to next/prev
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
@@ -100,25 +82,26 @@ function ProjectCoverflowModal({ images, onClose }) {
   };
 
   /**
-   * Horizontal cover flow:
-   * - shift each slide along X
-   * - rotate around Y
-   * - scale smaller if not center
+   * For each image i, compute "delta" = i - currentIndex
+   * We'll do a mild horizontal cover flow:
+   *  - shift slides horizontally
+   *  - rotate around Y axis a bit
+   *  - scale smaller if not center
+   *  - slight z-translation
    */
   const getSlideStyle = (i) => {
     const delta = i - currentIndex;
-
-    // For a standard horizontal cover flow
-    const translateX = delta * 300; // shift slides left/right
-    const rotateY = delta * 15; // rotate 15 deg per step
-    const scale = 1 - Math.min(Math.abs(delta) * 0.1, 0.5);
+    // minimal 3D transform
+    const translateX = delta * 200; // spacing between slides
+    const rotateY = delta * 5; // mild tilt
+    const scale = 1 - Math.min(Math.abs(delta) * 0.05, 0.3);
     const zIndex = 100 - Math.abs(delta);
-    const translateZ = -Math.abs(delta) * 150; // push off-center slides back
+    const translateZ = -Math.abs(delta) * 50; // slight push back
 
     return {
       position: "absolute",
-      width: "30%", // each slide ~30% of the modal width
-      height: "70%", // each slide ~70% of the modal height => portrait shape
+      width: "40%", // each slide ~40% of the modal width
+      height: "60%", // each slide ~60% of the modal height
       top: "50%",
       left: "50%",
       transformStyle: "preserve-3d",
@@ -131,17 +114,18 @@ function ProjectCoverflowModal({ images, onClose }) {
       `,
       transition: "transform 0.5s ease",
       zIndex,
-      display: Math.abs(delta) > 3 ? "none" : "block", // hide far slides
+      // Hide slides that are too far from center
+      display: Math.abs(delta) > 3 ? "none" : "block",
     };
   };
 
-  // Ensure no top/bottom cut off => objectFit: "contain"
+  // Each slide's image style
   const slideImageStyle = {
     width: "100%",
     height: "100%",
-    objectFit: "contain",
+    objectFit: "contain", // no top/bottom cropping
     borderRadius: "8px",
-    boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
+    backgroundColor: "transparent",
   };
 
   return (
@@ -151,21 +135,13 @@ function ProjectCoverflowModal({ images, onClose }) {
           ✕
         </button>
 
-        <div style={carouselStyle}>
+        {/* The cover flow container */}
+        <div style={carouselStyle} onClick={handleCarouselClick}>
           {images.map((src, i) => (
             <div key={i} style={getSlideStyle(i)}>
               <img src={src} alt="" style={slideImageStyle} />
             </div>
           ))}
-
-          <div style={navBarStyle}>
-            <button style={navButtonStyle} onClick={handlePrev}>
-              Previous
-            </button>
-            <button style={navButtonStyle} onClick={handleNext}>
-              Next
-            </button>
-          </div>
         </div>
       </div>
     </div>
