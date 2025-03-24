@@ -1,31 +1,31 @@
 import React from "react";
-// import Image from "next/image";
 import { ExternalLink, Star } from "lucide-react";
 import TechBadge from "./TechBadge";
 
 function ProjectCard({
   title,
   description,
-  image,
+  images,
   link,
   technologies,
   stars,
   downloads,
   year,
+  onCardClick, // callback from ProjectsSection
 }) {
-  // Base card style with transitions for hover effect
+  // Base card style
   const cardStyle = {
     display: "flex",
     flexDirection: "row",
     marginBottom: "20px",
-    padding: "20px",
     border: "1px solid #233554",
     borderRadius: "4px",
     transition: "transform 0.3s, box-shadow 0.3s",
     position: "relative",
+    cursor: "pointer", // Indicate clickable
   };
 
-  // Hover event handlers for the container
+  // Hover event handlers
   const handleMouseEnter = (e) => {
     e.currentTarget.style.transform = "scale(1.02)";
     e.currentTarget.style.boxShadow = "0 8px 20px rgba(100,255,218,0.1)";
@@ -35,14 +35,31 @@ function ProjectCard({
     e.currentTarget.style.boxShadow = "none";
   };
 
-  // Content
-  const contentStyle = {
-    flex: 1,
-    marginRight: "20px",
-  };
-
+  // Left image preview
   const imageContainerStyle = {
     flexShrink: 0,
+    width: "250px",
+    height: "150px",
+    backgroundColor: "#1e293b", // fallback if no image
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderTopLeftRadius: "4px",
+    borderBottomLeftRadius: "4px",
+    overflow: "hidden",
+  };
+
+  // If you want an actual <img> tag:
+  const imageStyle = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  };
+
+  // Right content
+  const contentStyle = {
+    flex: 1,
+    padding: "20px",
   };
 
   const titleStyle = {
@@ -63,7 +80,7 @@ function ProjectCard({
     marginBottom: "24px",
   };
 
-  // Link icon style
+  // External link icon style
   const linkIconStyle = {
     marginLeft: "5px",
     width: "16px",
@@ -93,7 +110,22 @@ function ProjectCard({
       style={cardStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onCardClick} // open the modal
     >
+      {/* Left image preview */}
+      <div style={imageContainerStyle}>
+        {images && images.length > 0 ? (
+          <img
+            src={images[0]} // first image as a preview
+            alt={title}
+            style={imageStyle}
+          />
+        ) : (
+          <span style={{ color: "#fff" }}>No Image</span>
+        )}
+      </div>
+
+      {/* Right content */}
       <div style={contentStyle}>
         {year && (
           <div style={{ fontSize: "0.9rem", color: "#8892b0" }}>{year}</div>
@@ -101,13 +133,13 @@ function ProjectCard({
         <div style={titleStyle}>
           <a
             href={link}
+            onClick={(e) => e.stopPropagation()} // prevent opening modal if user clicks link
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#e6f1ff", textDecoration: "none" }}
           >
             {title}
           </a>
-          {/* External link icon (optional) */}
           <ExternalLink
             style={linkIconStyle}
             onMouseEnter={handleIconMouseEnter}
@@ -118,10 +150,7 @@ function ProjectCard({
         {technologies && (
           <div style={techListStyle}>
             {technologies.map((tech, i) => (
-              <div
-                key={i}
-                style={{ marginRight: "10px", marginBottom: "10px" }}
-              >
+              <div key={i}>
                 <TechBadge>{tech}</TechBadge>
               </div>
             ))}
@@ -175,19 +204,6 @@ function ProjectCard({
             {downloads}
           </div>
         )}
-      </div>
-
-      <div style={imageContainerStyle}>
-        {/* <Image
-          src={image || "/placeholder.svg"}
-          alt={title}
-          width={200}
-          height={120}
-          style={{
-            borderRadius: "4px",
-            border: "1px solid rgba(75,85,99,0.5)",
-          }}
-        /> */}
       </div>
     </div>
   );
