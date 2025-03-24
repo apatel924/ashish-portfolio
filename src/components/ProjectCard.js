@@ -1,3 +1,4 @@
+// ProjectCard.js
 import React from "react";
 import { ExternalLink, Star } from "lucide-react";
 import TechBadge from "./TechBadge";
@@ -11,20 +12,17 @@ function ProjectCard({
   stars,
   downloads,
   year,
-  onCardClick, // callback from ProjectsSection
+  onImageClick, // callback for opening the modal
 }) {
-  // Base card style
   const cardStyle = {
     display: "flex",
-    flexDirection: "row",
     marginBottom: "20px",
+    border: "none", // removed border as requested
     borderRadius: "4px",
     transition: "transform 0.3s, box-shadow 0.3s",
     position: "relative",
-    cursor: "pointer", // Indicate clickable
   };
 
-  // Hover event handlers
   const handleMouseEnter = (e) => {
     e.currentTarget.style.transform = "scale(1.02)";
     e.currentTarget.style.boxShadow = "0 8px 20px rgba(100,255,218,0.1)";
@@ -34,28 +32,26 @@ function ProjectCard({
     e.currentTarget.style.boxShadow = "none";
   };
 
-  // Left image preview
   const imageContainerStyle = {
     flexShrink: 0,
     width: "250px",
     height: "150px",
-    backgroundColor: "#1e293b", // fallback if no image
+    backgroundColor: "#1e293b",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     borderTopLeftRadius: "4px",
     borderBottomLeftRadius: "4px",
     overflow: "hidden",
+    cursor: images && images.length > 0 ? "pointer" : "default",
   };
 
-  // If you want an actual <img> tag:
   const imageStyle = {
     width: "100%",
     height: "100%",
     objectFit: "cover",
   };
 
-  // Right content
   const contentStyle = {
     flex: 1,
     padding: "20px",
@@ -79,7 +75,6 @@ function ProjectCard({
     marginBottom: "24px",
   };
 
-  // External link icon style
   const linkIconStyle = {
     marginLeft: "5px",
     width: "16px",
@@ -101,7 +96,15 @@ function ProjectCard({
     marginTop: "24px",
     display: "flex",
     flexWrap: "wrap",
-    gap: "5px",
+    gap: "8px",
+  };
+
+  // Ensure the image click is triggered by both the container and the <img>
+  const handleImageClick = (e) => {
+    e.stopPropagation();
+    if (images && images.length > 0 && onImageClick) {
+      onImageClick();
+    }
   };
 
   return (
@@ -109,22 +112,20 @@ function ProjectCard({
       style={cardStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={onCardClick} // open the modal
     >
-      {/* Left image preview */}
-      <div style={imageContainerStyle}>
+      <div style={imageContainerStyle} onClick={handleImageClick}>
         {images && images.length > 0 ? (
           <img
-            src={images[0]} // first image as a preview
+            src={images[0]}
             alt={title}
             style={imageStyle}
+            onClick={handleImageClick} // Added onClick here as well
           />
         ) : (
           <span style={{ color: "#fff" }}>No Image</span>
         )}
       </div>
 
-      {/* Right content */}
       <div style={contentStyle}>
         {year && (
           <div style={{ fontSize: "0.9rem", color: "#8892b0" }}>{year}</div>
@@ -132,7 +133,7 @@ function ProjectCard({
         <div style={titleStyle}>
           <a
             href={link}
-            onClick={(e) => e.stopPropagation()} // prevent opening modal if user clicks link
+            onClick={(e) => e.stopPropagation()}
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#e6f1ff", textDecoration: "none" }}
@@ -149,7 +150,10 @@ function ProjectCard({
         {technologies && (
           <div style={techListStyle}>
             {technologies.map((tech, i) => (
-              <div key={i}>
+              <div
+                key={i}
+                style={{ marginRight: "10px", marginBottom: "10px" }}
+              >
                 <TechBadge>{tech}</TechBadge>
               </div>
             ))}
