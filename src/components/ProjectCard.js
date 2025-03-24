@@ -1,4 +1,3 @@
-// ProjectCard.js
 import React from "react";
 import { ExternalLink, Star } from "lucide-react";
 import TechBadge from "./TechBadge";
@@ -12,17 +11,20 @@ function ProjectCard({
   stars,
   downloads,
   year,
-  onImageClick, // callback for opening the modal
+  onImageClick, // callback to open the modal
 }) {
+  // Card container: flex with stretch alignment so left image container fills vertical space
   const cardStyle = {
     display: "flex",
     marginBottom: "20px",
-    border: "none", // removed border as requested
+    border: "none",
     borderRadius: "4px",
     transition: "transform 0.3s, box-shadow 0.3s",
     position: "relative",
+    alignItems: "stretch", // Let left container stretch to match right side
   };
 
+  // Subtle hover effect
   const handleMouseEnter = (e) => {
     e.currentTarget.style.transform = "scale(1.02)";
     e.currentTarget.style.boxShadow = "0 8px 20px rgba(100,255,218,0.1)";
@@ -32,11 +34,11 @@ function ProjectCard({
     e.currentTarget.style.boxShadow = "none";
   };
 
+  // Left image container: no fixed height; it stretches
   const imageContainerStyle = {
     flexShrink: 0,
-    width: "250px",
-    height: "150px",
-    backgroundColor: "#1e293b",
+    width: "250px", // or any width you prefer
+    maxHeight: "320px", // Add max height to prevent overly tall images
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -44,19 +46,27 @@ function ProjectCard({
     borderBottomLeftRadius: "4px",
     overflow: "hidden",
     cursor: images && images.length > 0 ? "pointer" : "default",
+    backgroundColor: "#1e293b",
   };
 
+  // The preview image itself
   const imageStyle = {
     width: "100%",
     height: "100%",
-    objectFit: "cover",
+    maxHeight: "320px", // Match container max height
+    objectFit: "cover", // fill container top-to-bottom
   };
 
+  // Right content
   const contentStyle = {
     flex: 1,
     padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   };
 
+  // Title styling
   const titleStyle = {
     fontSize: "30px",
     fontWeight: "500",
@@ -75,6 +85,7 @@ function ProjectCard({
     marginBottom: "24px",
   };
 
+  // Link icon styling
   const linkIconStyle = {
     marginLeft: "5px",
     width: "16px",
@@ -96,10 +107,10 @@ function ProjectCard({
     marginTop: "24px",
     display: "flex",
     flexWrap: "wrap",
-    gap: "8px",
+    gap: "16px",
   };
 
-  // Ensure the image click is triggered by both the container and the <img>
+  // If user clicks the image
   const handleImageClick = (e) => {
     e.stopPropagation();
     if (images && images.length > 0 && onImageClick) {
@@ -113,19 +124,16 @@ function ProjectCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Left image container: full vertical fill */}
       <div style={imageContainerStyle} onClick={handleImageClick}>
         {images && images.length > 0 ? (
-          <img
-            src={images[0]}
-            alt={title}
-            style={imageStyle}
-            onClick={handleImageClick} // Added onClick here as well
-          />
+          <img src={images[0]} alt={title} style={imageStyle} />
         ) : (
           <span style={{ color: "#fff" }}>No Image</span>
         )}
       </div>
 
+      {/* Right content: title, description, badges, etc. */}
       <div style={contentStyle}>
         {year && (
           <div style={{ fontSize: "0.9rem", color: "#8892b0" }}>{year}</div>
@@ -146,19 +154,19 @@ function ProjectCard({
             onMouseLeave={handleIconMouseLeave}
           />
         </div>
+
         {description && <p style={descriptionStyle}>{description}</p>}
+
         {technologies && (
           <div style={techListStyle}>
             {technologies.map((tech, i) => (
-              <div
-                key={i}
-                style={{ marginRight: "10px", marginBottom: "10px" }}
-              >
+              <div key={i}>
                 <TechBadge>{tech}</TechBadge>
               </div>
             ))}
           </div>
         )}
+
         {stars && (
           <div
             style={{
