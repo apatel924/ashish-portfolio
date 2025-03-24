@@ -38,7 +38,7 @@ function ProjectCard({
   const imageContainerStyle = {
     flexShrink: 0,
     width: "250px", // or any width you prefer
-    maxHeight: "350px", // Add max height to prevent overly tall images
+    maxHeight: "360px", // Add max height to prevent overly tall images
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -53,7 +53,7 @@ function ProjectCard({
   const imageStyle = {
     width: "100%",
     height: "100%",
-    maxHeight: "350px", // Match container max height
+    maxHeight: "360px", // Match container max height
     objectFit: "cover", // fill container top-to-bottom
   };
 
@@ -123,6 +123,14 @@ function ProjectCard({
     }
   };
 
+  // Handle link icon click
+  const handleLinkClick = (e) => {
+    e.stopPropagation();
+    if (link) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <div
       style={cardStyle}
@@ -157,6 +165,7 @@ function ProjectCard({
             style={linkIconStyle}
             onMouseEnter={handleIconMouseEnter}
             onMouseLeave={handleIconMouseLeave}
+            onClick={handleLinkClick}
           />
         </div>
 
