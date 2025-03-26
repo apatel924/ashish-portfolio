@@ -4,14 +4,16 @@ import React from "react";
 function DocumentModal({ src, onClose }) {
   if (!src) return null;
 
-  // Blurred backdrop
+  // Fullscreen backdrop
   const backdropStyle = {
     position: "fixed",
     top: 0,
     left: 0,
     width: "100vw",
     height: "100vh",
-    backgroundColor: "rgba(0,0,0,0.85)", // Darker, more opaque backdrop
+    backgroundColor: "rgba(0,0,0,0.85)", // Dark overlay
+    backdropFilter: "blur(8px)", // Blurred background
+    WebkitBackdropFilter: "blur(8px)", // Safari support
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -22,10 +24,10 @@ function DocumentModal({ src, onClose }) {
   const modalStyle = {
     width: "70vw",
     height: "80vh",
-    backgroundColor: "#121212", // Solid dark background
+    backgroundColor: "#121212",
     borderRadius: "16px",
     position: "relative",
-    boxShadow: "0 2px 20px rgba(0,0,0,0.2)",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
@@ -38,7 +40,7 @@ function DocumentModal({ src, onClose }) {
     top: "10px",
     right: "10px",
     fontSize: "1.2rem",
-    color: "#8892b0", // Light gray color
+    color: "#8892b0",
     background: "transparent",
     border: "none",
     cursor: "pointer",
@@ -48,16 +50,21 @@ function DocumentModal({ src, onClose }) {
     transition: "color 0.2s",
   };
 
-  const stopPropagation = (e) => e.stopPropagation();
+  // Stop clicks inside the modal from bubbling to the backdrop
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <div style={backdropStyle} onClick={onClose}>
+      {/* Clicking on the backdrop calls onClose */}
       <div style={modalStyle} onClick={stopPropagation}>
+        {/* Clicking inside the modal does NOT close it */}
         <button style={closeButtonStyle} onClick={onClose}>
           ✕
         </button>
 
-        {/* PDF displayed in an iframe */}
+        {/* Embed the PDF (or other document) */}
         <iframe
           src={src}
           title="Document PDF"
@@ -65,7 +72,7 @@ function DocumentModal({ src, onClose }) {
             width: "100%",
             height: "100%",
             border: "none",
-            backgroundColor: "#fff", // White background for PDF
+            backgroundColor: "#fff",
           }}
         />
       </div>
