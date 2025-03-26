@@ -1,10 +1,10 @@
+// src/components/DocumentModal.js
 import React from "react";
 
-function DocumentModal({ docType, src, onClose }) {
-  // If no source => don't render
+function DocumentModal({ src, onClose }) {
   if (!src) return null;
 
-  // BACKDROP
+  // Blurred backdrop
   const backdropStyle = {
     position: "fixed",
     top: 0,
@@ -20,7 +20,7 @@ function DocumentModal({ docType, src, onClose }) {
     zIndex: 9999,
   };
 
-  // MODAL CONTAINER
+  // Modal container
   const modalStyle = {
     width: "70vw",
     height: "80vh",
@@ -35,14 +35,14 @@ function DocumentModal({ docType, src, onClose }) {
     overflow: "hidden",
   };
 
-  // CLOSE BUTTON
+  // Close button
   const closeButtonStyle = {
     position: "absolute",
     top: "10px",
     right: "10px",
     fontSize: "1.2rem",
     color: "#000",
-    background: "transparent",
+    // background: "transparent",
     border: "none",
     cursor: "pointer",
     zIndex: 2,
@@ -57,30 +57,16 @@ function DocumentModal({ docType, src, onClose }) {
           ✕
         </button>
 
-        {/* Display PDF or Image */}
-        {docType === "pdf" ? (
-          // PDF in an iframe
-          <iframe
-            src={src}
-            title="Document PDF"
-            style={{
-              width: "100%",
-              height: "100%",
-              border: "none",
-            }}
-          />
-        ) : (
-          // docType === "image"
-          <img
-            src={src}
-            alt="Document"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-            }}
-          />
-        )}
+        {/* PDF displayed in an iframe */}
+        <iframe
+          src={src}
+          title="Document PDF"
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+          }}
+        />
       </div>
     </div>
   );
