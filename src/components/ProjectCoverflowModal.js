@@ -12,7 +12,7 @@ function ProjectCoverflowModal({ images, onClose }) {
     left: 0,
     width: "100vw",
     height: "100vh",
-    backgroundColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(0,0,0,0.85)", // Darker backdrop
     backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
     display: "flex",
@@ -23,15 +23,15 @@ function ProjectCoverflowModal({ images, onClose }) {
 
   // MODAL (70×70 for less negative space)
   const modalContainerStyle = {
-    width: "70vw",
+    width: "60vw",
     height: "70vh",
-    backgroundColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(18,18,18,0.95)", // Dark theme background
     backdropFilter: "blur(15px)",
     WebkitBackdropFilter: "blur(15px)",
     borderRadius: "16px",
     position: "relative",
     overflow: "hidden",
-    boxShadow: "0 2px 20px rgba(0,0,0,0.2)",
+    boxShadow: "0 2px 20px rgba(0,0,0,0.4)", // Darker shadow
     display: "flex",
     flexDirection: "column",
   };
@@ -42,7 +42,7 @@ function ProjectCoverflowModal({ images, onClose }) {
     top: "10px",
     right: "10px",
     fontSize: "1.2rem",
-    color: "#000",
+    color: "#8892b0", // Light gray color
     background: "transparent",
     border: "none",
     cursor: "pointer",
