@@ -11,9 +11,7 @@ function DocumentModal({ src, onClose }) {
     left: 0,
     width: "100vw",
     height: "100vh",
-    backgroundColor: "rgba(255,255,255,0.1)",
-    backdropFilter: "blur(20px)",
-    WebkitBackdropFilter: "blur(20px)",
+    backgroundColor: "rgba(0,0,0,0.85)", // Darker, more opaque backdrop
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -24,15 +22,14 @@ function DocumentModal({ src, onClose }) {
   const modalStyle = {
     width: "70vw",
     height: "80vh",
-    backgroundColor: "rgba(255,255,255,0.2)",
-    backdropFilter: "blur(15px)",
-    WebkitBackdropFilter: "blur(15px)",
+    backgroundColor: "#121212", // Solid dark background
     borderRadius: "16px",
     position: "relative",
     boxShadow: "0 2px 20px rgba(0,0,0,0.2)",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
+    border: "1px solid rgba(255,255,255,0.1)",
   };
 
   // Close button
@@ -41,11 +38,14 @@ function DocumentModal({ src, onClose }) {
     top: "10px",
     right: "10px",
     fontSize: "1.2rem",
-    color: "#000",
-    // background: "transparent",
+    color: "#8892b0", // Light gray color
+    background: "transparent",
     border: "none",
     cursor: "pointer",
     zIndex: 2,
+    padding: "8px",
+    borderRadius: "50%",
+    transition: "color 0.2s",
   };
 
   const stopPropagation = (e) => e.stopPropagation();
@@ -65,6 +65,7 @@ function DocumentModal({ src, onClose }) {
             width: "100%",
             height: "100%",
             border: "none",
+            backgroundColor: "#fff", // White background for PDF
           }}
         />
       </div>
