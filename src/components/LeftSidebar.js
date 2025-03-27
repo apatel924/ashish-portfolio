@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SocialLinks from "./SocialLinks";
 import DocumentModal from "./DocumentModal";
+import linkedinImg from "../images/linkedin-img.jpeg";
 
 function LeftSidebar() {
   // State for PDF modals
@@ -24,6 +25,16 @@ function LeftSidebar() {
     margin: 0,
     color: "#ffffff",
     lineHeight: 1.2,
+  };
+
+  const imageStyle = {
+    width: "200px",
+    height: "200px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    marginTop: "20px",
+    marginBottom: "40px",
+    border: "2px solid #64ffda",
   };
 
   const titleStyle = {
@@ -86,6 +97,7 @@ function LeftSidebar() {
   return (
     <div style={containerStyle}>
       <h1 style={nameStyle}>Ashish Patel</h1>
+      <img src={linkedinImg} alt="Ashish Patel" style={imageStyle} />
       <h2 style={titleStyle}>Full Stack Web Developer</h2>
       <p style={paragraphStyle}>
         I build accessible, pixel-perfect digital experiences for the web.
