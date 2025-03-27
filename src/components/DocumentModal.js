@@ -1,41 +1,29 @@
 // src/components/DocumentModal.js
-import React, { useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
-
-// Configure PDF.js worker source - Fixed worker URL
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+import React from "react";
 
 function DocumentModal({ src, onClose }) {
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-
   if (!src) return null;
 
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
-
-  // Fullscreen backdrop - completely opaque
+  // Fullscreen backdrop
   const backdropStyle = {
     position: "fixed",
     top: 0,
     left: 0,
-    right: 0,
-    bottom: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#000000", // Completely opaque black
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(0,0,0,0.85)", // Dark overlay
+    backdropFilter: "blur(8px)", // Blurred background
+    WebkitBackdropFilter: "blur(8px)", // Safari support
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 9999999,
-    pointerEvents: "all", // Ensure clicks are captured
+    zIndex: 9999,
   };
 
   // Modal container
   const modalStyle = {
-    width: "70%",
-    height: "80%",
+    width: "70vw",
+    height: "80vh",
     backgroundColor: "#121212",
     borderRadius: "16px",
     position: "relative",
@@ -44,8 +32,8 @@ function DocumentModal({ src, onClose }) {
     flexDirection: "column",
     overflow: "hidden",
     border: "1px solid rgba(255,255,255,0.1)",
-    zIndex: 10000000,
-    pointerEvents: "all", // Ensure clicks are captured
+    isolation: "isolate",
+    backdropFilter: "none",
   };
 
   // Close button
@@ -64,16 +52,6 @@ function DocumentModal({ src, onClose }) {
     transition: "color 0.2s",
   };
 
-  // The iframe container to block click-through
-  const iframeContainerStyle = {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#ffffff", // Solid background
-    position: "relative",
-    zIndex: 1,
-    pointerEvents: "all", // Ensure clicks are captured
-  };
-
   // Stop clicks inside the modal from bubbling to the backdrop
   const stopPropagation = (e) => {
     e.stopPropagation();
@@ -88,25 +66,20 @@ function DocumentModal({ src, onClose }) {
           ✕
         </button>
 
-        {/* Add a container div around the iframe */}
-        <div style={iframeContainerStyle}>
-          <Document
-            file={src}
-            onLoadSuccess={onDocumentLoadSuccess}
-            loading={
-              <div style={{ color: "white", textAlign: "center" }}>
-                Loading document...
-              </div>
-            }
-          >
-            <Page
-              pageNumber={pageNumber}
-              renderTextLayer={false}
-              renderAnnotationLayer={false}
-              width={800}
-            />
-          </Document>
-        </div>
+        {/* Embed the PDF (or other document) */}
+        <iframe
+          src={src}
+          title="Document PDF"
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+            backgroundColor: "#fff",
+            display: "block",
+            position: "relative",
+            zIndex: 1,
+          }}
+        />
       </div>
     </div>
   );
