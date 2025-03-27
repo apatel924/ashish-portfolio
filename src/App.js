@@ -36,7 +36,6 @@ function App() {
     boxSizing: "border-box",
     paddingRight: "160px",
     position: "relative",
-    zIndex: 1,
   };
 
   return (
