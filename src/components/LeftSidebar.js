@@ -1,4 +1,3 @@
-// src/components/LeftSidebar.js
 import React, { useState } from "react";
 import SocialLinks from "./SocialLinks";
 import DocumentModal from "./DocumentModal";
@@ -85,66 +84,64 @@ function LeftSidebar() {
   };
 
   return (
-    <>
-      <div style={containerStyle}>
-        <h1 style={nameStyle}>Ashish Patel</h1>
-        <h2 style={titleStyle}>Full Stack Web Developer</h2>
-        <p style={paragraphStyle}>
-          I build accessible, pixel-perfect digital experiences for the web.
-        </p>
+    <div style={containerStyle}>
+      <h1 style={nameStyle}>Ashish Patel</h1>
+      <h2 style={titleStyle}>Full Stack Web Developer</h2>
+      <p style={paragraphStyle}>
+        I build accessible, pixel-perfect digital experiences for the web.
+      </p>
 
-        {/* Existing nav links for About, Experience, Projects */}
-        <nav style={navStyle}>
-          <a
-            style={navLinkStyle}
-            onMouseEnter={handleNavHoverEnter}
-            onMouseLeave={handleNavHoverLeave}
-            href="#about"
-          >
-            About
-          </a>
-          <a
-            style={navLinkStyle}
-            onMouseEnter={handleNavHoverEnter}
-            onMouseLeave={handleNavHoverLeave}
-            href="#experience"
-          >
-            Experience
-          </a>
-          <a
-            style={navLinkStyle}
-            onMouseEnter={handleNavHoverEnter}
-            onMouseLeave={handleNavHoverLeave}
-            href="#projects"
-          >
-            Projects
-          </a>
-        </nav>
+      {/* Existing nav links for About, Experience, Projects */}
+      <nav style={navStyle}>
+        <a
+          style={navLinkStyle}
+          onMouseEnter={handleNavHoverEnter}
+          onMouseLeave={handleNavHoverLeave}
+          href="#about"
+        >
+          About
+        </a>
+        <a
+          style={navLinkStyle}
+          onMouseEnter={handleNavHoverEnter}
+          onMouseLeave={handleNavHoverLeave}
+          href="#experience"
+        >
+          Experience
+        </a>
+        <a
+          style={navLinkStyle}
+          onMouseEnter={handleNavHoverEnter}
+          onMouseLeave={handleNavHoverLeave}
+          href="#projects"
+        >
+          Projects
+        </a>
+      </nav>
 
-        {/* Add 2 large text links for PDF popups */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <span
-            style={docLinkStyle}
-            onMouseEnter={handleDocHoverEnter}
-            onMouseLeave={handleDocHoverLeave}
-            onClick={() => setShowResume(true)}
-          >
-            Resume
-          </span>
-          <span
-            style={docLinkStyle}
-            onMouseEnter={handleDocHoverEnter}
-            onMouseLeave={handleDocHoverLeave}
-            onClick={() => setShowDiploma(true)}
-          >
-            Certification
-          </span>
-        </div>
+      {/* Add 2 large text links for PDF popups */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <span
+          style={docLinkStyle}
+          onMouseEnter={handleDocHoverEnter}
+          onMouseLeave={handleDocHoverLeave}
+          onClick={() => setShowResume(true)}
+        >
+          Resume
+        </span>
+        <span
+          style={docLinkStyle}
+          onMouseEnter={handleDocHoverEnter}
+          onMouseLeave={handleDocHoverLeave}
+          onClick={() => setShowDiploma(true)}
+        >
+          Certification
+        </span>
+      </div>
 
-        {/* Social links at bottom */}
-        <div style={{ marginTop: "auto", marginBottom: "40px" }}>
-          <SocialLinks vertical={false} />
-        </div>
+      {/* Social links at bottom */}
+      <div style={{ marginTop: "auto", marginBottom: "40px" }}>
+        <SocialLinks vertical={false} />
       </div>
 
       {/* Resume PDF Modal */}
@@ -162,7 +159,7 @@ function LeftSidebar() {
           onClose={() => setShowDiploma(false)}
         />
       )}
-    </>
+    </div>
   );
 }
 
