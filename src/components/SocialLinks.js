@@ -6,12 +6,12 @@ function SocialLinks({ vertical = false }) {
     display: "flex",
     flexDirection: vertical ? "column" : "row",
     alignItems: "center",
-    gap: vertical ? "31px" : "26px", // Increased spacing by 10%
+    gap: vertical ? "31px" : "26px",
   };
 
   const linkStyle = {
     color: "#8892b0",
-    fontSize: "2rem", // Increased font size
+    fontSize: "5rem", // Increased font size
     transition: "color 0.3s, transform 0.3s",
   };
 
