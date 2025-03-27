@@ -15,6 +15,8 @@ function App() {
     padding: 0,
     boxSizing: "border-box",
     overflowY: "auto", // Allow scrolling on entire container
+    position: "relative",
+    zIndex: 1,
   };
 
   const leftStyle = {
@@ -23,6 +25,7 @@ function App() {
     height: "100vh",
     overflow: "hidden",
     paddingLeft: "160px",
+    zIndex: 1,
   };
 
   const rightStyle = {
@@ -32,6 +35,8 @@ function App() {
     padding: "50px",
     boxSizing: "border-box",
     paddingRight: "160px",
+    position: "relative",
+    zIndex: 1,
   };
 
   return (
