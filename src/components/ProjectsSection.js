@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProjectCard from "./ProjectCard";
-import ProjectCoverflowModal from "./ProjectCoverflowModal";
+import ProjectCoverflowModal from "./ProjectCoverFlowModal";
 import { projectsData } from "../data/projects";
 
 function ProjectsSection() {
