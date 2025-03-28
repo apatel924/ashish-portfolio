@@ -1,63 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SocialLinks from "./SocialLinks";
 import DocumentModal from "./DocumentModal";
 import linkedinImg from "../images/linkedin-img.jpeg";
 
-function LeftSidebar() {
+function Header() {
   // State for PDF modals
   const [showResume, setShowResume] = useState(false);
   const [showDiploma, setShowDiploma] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
-  // Existing container style
-  const containerStyle = {
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const headerStyle = {
+    position: isMobile ? "static" : "sticky",
+    top: 0,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    height: "100%",
-    padding: "80px 60px",
-    boxSizing: "border-box",
+    justifyContent: "between",
+    width: isMobile ? "100%" : "48%",
+    maxHeight: isMobile ? "auto" : "100vh",
+    padding: isMobile ? "24px 16px" : "24px 0",
   };
 
-  const nameStyle = {
-    fontSize: "4rem",
-    fontWeight: "bold",
-    margin: 0,
-    color: "#ffffff",
-    lineHeight: 1.2,
+  const profileContainerStyle = {
+    marginBottom: "32px",
+  };
+
+  const profileStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+    marginBottom: "24px",
   };
 
   const imageStyle = {
-    width: "200px",
-    height: "200px",
+    width: "60px",
+    height: "60px",
     borderRadius: "50%",
     objectFit: "cover",
-    marginTop: "20px",
-    marginBottom: "40px",
     border: "2px solid #64ffda",
   };
 
+  const nameStyle = {
+    fontSize: "2.5rem",
+    fontWeight: "bold",
+    margin: 0,
+    color: "#ffffff",
+  };
+
   const titleStyle = {
-    fontSize: "1.75rem",
+    fontSize: "1.2rem",
     color: "#64ffda",
-    margin: "16px 0 24px 0",
-    lineHeight: 1.3,
+    margin: "8px 0 0 0",
   };
 
-  const paragraphStyle = {
-    fontSize: "1.1rem",
-    color: "#a8b2d1",
-    maxWidth: "360px",
-    lineHeight: 1.6,
-    marginBottom: "40px",
-  };
-
-  // Nav container
   const navStyle = {
     display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-    marginBottom: "40px",
+    flexDirection: isMobile ? "row" : "column",
+    gap: isMobile ? "24px" : "16px",
+    marginBottom: "32px",
   };
 
   const navLinkStyle = {
@@ -70,89 +79,94 @@ function LeftSidebar() {
     transition: "color 0.3s",
   };
 
-  // Hover effect
-  const handleNavHoverEnter = (e) => {
-    e.target.style.color = "#64ffda";
-  };
-  const handleNavHoverLeave = (e) => {
-    e.target.style.color = "#e6f1ff";
+  const docLinksStyle = {
+    display: "flex",
+    flexDirection: isMobile ? "row" : "column",
+    gap: isMobile ? "24px" : "16px",
+    marginBottom: "32px",
   };
 
-  // Large text links for resume/diploma
   const docLinkStyle = {
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     fontWeight: "bold",
     color: "#e6f1ff",
     cursor: "pointer",
     transition: "color 0.3s",
     textTransform: "uppercase",
   };
-  const handleDocHoverEnter = (e) => {
+
+  // Hover effects
+  const handleHoverEnter = (e) => {
     e.target.style.color = "#64ffda";
   };
-  const handleDocHoverLeave = (e) => {
+
+  const handleHoverLeave = (e) => {
     e.target.style.color = "#e6f1ff";
   };
 
-  return (
-    <div style={containerStyle}>
-      <h1 style={nameStyle}>Ashish Patel</h1>
-      <img src={linkedinImg} alt="Ashish Patel" style={imageStyle} />
-      <h2 style={titleStyle}>Full Stack Web Developer</h2>
-      <p style={paragraphStyle}>
-        I build accessible, pixel-perfect digital experiences for the web.
-      </p>
+  const socialContainerStyle = {
+    marginTop: "auto", // Push to bottom when in side layout
+  };
 
-      {/* Existing nav links for About, Experience, Projects */}
+  return (
+    <header style={headerStyle}>
+      <div style={profileContainerStyle}>
+        <div style={profileStyle}>
+          <img src={linkedinImg} alt="Ashish Patel" style={imageStyle} />
+          <div>
+            <h1 style={nameStyle}>Ashish Patel</h1>
+            <h2 style={titleStyle}>Full Stack Web Developer</h2>
+          </div>
+        </div>
+      </div>
+
       <nav style={navStyle}>
         <a
           style={navLinkStyle}
-          onMouseEnter={handleNavHoverEnter}
-          onMouseLeave={handleNavHoverLeave}
+          onMouseEnter={handleHoverEnter}
+          onMouseLeave={handleHoverLeave}
           href="#about"
         >
           About
         </a>
         <a
           style={navLinkStyle}
-          onMouseEnter={handleNavHoverEnter}
-          onMouseLeave={handleNavHoverLeave}
+          onMouseEnter={handleHoverEnter}
+          onMouseLeave={handleHoverLeave}
           href="#experience"
         >
           Experience
         </a>
         <a
           style={navLinkStyle}
-          onMouseEnter={handleNavHoverEnter}
-          onMouseLeave={handleNavHoverLeave}
-          href="#projects"
+          onMouseEnter={handleHoverEnter}
+          onMouseLeave={handleHoverLeave}
+          href="#project"
         >
-          Projects
+          Project
         </a>
       </nav>
 
-      {/* Add 2 large text links for PDF popups */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div style={docLinksStyle}>
         <span
           style={docLinkStyle}
-          onMouseEnter={handleDocHoverEnter}
-          onMouseLeave={handleDocHoverLeave}
+          onMouseEnter={handleHoverEnter}
+          onMouseLeave={handleHoverLeave}
           onClick={() => setShowResume(true)}
         >
           Resume
         </span>
         <span
           style={docLinkStyle}
-          onMouseEnter={handleDocHoverEnter}
-          onMouseLeave={handleDocHoverLeave}
+          onMouseEnter={handleHoverEnter}
+          onMouseLeave={handleHoverLeave}
           onClick={() => setShowDiploma(true)}
         >
           Certification
         </span>
       </div>
 
-      {/* Social links at bottom */}
-      <div style={{ marginTop: "auto", marginBottom: "40px" }}>
+      <div style={socialContainerStyle}>
         <SocialLinks vertical={false} />
       </div>
 
@@ -171,8 +185,8 @@ function LeftSidebar() {
           onClose={() => setShowDiploma(false)}
         />
       )}
-    </div>
+    </header>
   );
 }
 
-export default LeftSidebar;
+export default Header;
