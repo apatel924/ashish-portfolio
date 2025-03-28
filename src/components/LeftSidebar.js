@@ -3,6 +3,26 @@ import SocialLinks from "./SocialLinks";
 import DocumentModal from "./DocumentModal";
 import linkedinImg from "../images/linkedin-img.jpeg";
 
+// Create ResumeModal and DiplomaModal components
+export const ResumeModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <DocumentModal src="/docs/Ashish Patel Resume.pdf" onClose={onClose} />
+  );
+};
+
+export const DiplomaModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <DocumentModal
+      src="/docs/Ashish Patel DIPLOMA April 28, 2023 (1).pdf"
+      onClose={onClose}
+    />
+  );
+};
+
 function Header() {
   // State for PDF modals
   const [showResume, setShowResume] = useState(false);
@@ -188,5 +208,20 @@ function Header() {
     </header>
   );
 }
+
+// Export the styles and image that App.js needs
+export { linkedinImg };
+export const nameStyle = {
+  fontSize: "2.5rem",
+  fontWeight: "bold",
+  margin: 0,
+  color: "#ffffff",
+};
+
+export const titleStyle = {
+  fontSize: "1.2rem",
+  color: "#64ffda",
+  margin: "8px 0 0 0",
+};
 
 export default Header;
