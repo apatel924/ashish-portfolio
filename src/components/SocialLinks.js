@@ -11,7 +11,7 @@ function SocialLinks({ vertical = false }) {
 
   const linkStyle = {
     color: "#8892b0",
-    fontSize: "5rem", // Increased font size
+    fontSize: "20rem", // Increased font size
     transition: "color 0.3s, transform 0.3s",
   };
 
