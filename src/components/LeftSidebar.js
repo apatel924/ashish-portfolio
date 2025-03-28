@@ -3,10 +3,8 @@ import SocialLinks from "./SocialLinks";
 import DocumentModal from "./DocumentModal";
 import linkedinImg from "../images/linkedin-img.jpeg";
 
-// Create ResumeModal and DiplomaModal components
 export const ResumeModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
-
   return (
     <DocumentModal src="/docs/Ashish Patel Resume.pdf" onClose={onClose} />
   );
@@ -14,7 +12,6 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
 export const DiplomaModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
-
   return (
     <DocumentModal
       src="/docs/Ashish Patel DIPLOMA April 28, 2023 (1).pdf"
@@ -24,152 +21,192 @@ export const DiplomaModal = ({ isOpen, onClose }) => {
 };
 
 function Header() {
-  // State for PDF modals
   const [showResume, setShowResume] = useState(false);
   const [showDiploma, setShowDiploma] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+  const [activeSection, setActiveSection] = useState("");
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1024);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const headerStyle = {
-    position: isMobile ? "static" : "sticky",
-    top: 0,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "between",
-    width: isMobile ? "100%" : "48%",
-    maxHeight: isMobile ? "auto" : "100vh",
-    padding: isMobile ? "24px 16px" : "24px 0",
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["about", "experience", "project"];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 150 && rect.bottom >= 150;
+        }
+        return false;
+      });
+      setActiveSection(currentSection || "");
+    };
 
-  const profileContainerStyle = {
-    marginBottom: "32px",
-  };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const profileStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "20px",
-    marginBottom: "24px",
-  };
-
-  const imageStyle = {
-    width: "60px",
-    height: "60px",
-    borderRadius: "50%",
-    objectFit: "cover",
-    border: "2px solid #64ffda",
-  };
-
-  const nameStyle = {
-    fontSize: "2.5rem",
-    fontWeight: "bold",
-    margin: 0,
-    color: "#ffffff",
-  };
-
-  const titleStyle = {
-    fontSize: "1.2rem",
-    color: "#64ffda",
-    margin: "8px 0 0 0",
-  };
-
-  const navStyle = {
-    display: "flex",
-    flexDirection: isMobile ? "row" : "column",
-    gap: isMobile ? "24px" : "16px",
-    marginBottom: "32px",
-  };
-
-  const navLinkStyle = {
-    fontSize: "1rem",
-    color: "#e6f1ff",
-    textDecoration: "none",
-    textTransform: "uppercase",
-    letterSpacing: "1px",
-    cursor: "pointer",
-    transition: "color 0.3s",
-  };
-
-  const docLinksStyle = {
-    display: "flex",
-    flexDirection: isMobile ? "row" : "column",
-    gap: isMobile ? "24px" : "16px",
-    marginBottom: "32px",
-  };
-
-  const docLinkStyle = {
-    fontSize: "1rem",
-    fontWeight: "bold",
-    color: "#e6f1ff",
-    cursor: "pointer",
-    transition: "color 0.3s",
-    textTransform: "uppercase",
-  };
-
-  // Hover effects
   const handleHoverEnter = (e) => {
     e.target.style.color = "#64ffda";
   };
 
   const handleHoverLeave = (e) => {
-    e.target.style.color = "#e6f1ff";
+    const href = e.target.getAttribute("href")?.substring(1);
+    if (href === activeSection) {
+      e.target.style.color = "#64ffda";
+    } else {
+      e.target.style.color = "#8892b0";
+    }
   };
 
-  const socialContainerStyle = {
-    marginTop: "auto", // Push to bottom when in side layout
-  };
+  const getLinkStyle = (section) => ({
+    fontSize: activeSection === section ? "1.4rem" : "1.2rem",
+    color: activeSection === section ? "#64ffda" : "#8892b0",
+    textDecoration: "none",
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+    cursor: "pointer",
+    transition: "all 0.3s",
+  });
 
   return (
-    <header style={headerStyle}>
-      <div style={profileContainerStyle}>
-        <div style={profileStyle}>
-          <img src={linkedinImg} alt="Ashish Patel" style={imageStyle} />
+    <header
+      style={{
+        position: isMobile ? "static" : "sticky",
+        top: 0,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        width: isMobile ? "100%" : "60%",
+        maxWidth: "800px",
+        height: isMobile ? "auto" : "100vh",
+        padding: isMobile ? "40px 20px" : "120px 100px",
+        backgroundColor: "#0a192f",
+        color: "#8892b0",
+        overflow: "auto",
+      }}
+    >
+      {/* Top Section: Name, Title, and (optionally) avatar */}
+      <div style={{ marginBottom: "48px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "20px",
+            marginBottom: "24px",
+          }}
+        >
+          {/* Avatar (optional) */}
+          <img
+            src={linkedinImg}
+            alt="Ashish Patel"
+            style={{
+              width: "80px", // Increased from 60px
+              height: "80px", // Increased from 60px
+              borderRadius: "50%",
+              objectFit: "cover",
+              border: "2px solid #64ffda",
+            }}
+          />
           <div>
-            <h1 style={nameStyle}>Ashish Patel</h1>
-            <h2 style={titleStyle}>Full Stack Web Developer</h2>
+            <h1
+              style={{
+                fontSize: "3.5rem", // Increased from 2.75rem
+                fontWeight: "bold",
+                margin: 0,
+                color: "#e6f1ff",
+                lineHeight: 1.1,
+              }}
+            >
+              Ashish Patel
+            </h1>
+            <h2
+              style={{
+                fontSize: "1.5rem", // Increased from 1.2rem
+                color: "#64ffda",
+                margin: "8px 0 0 0",
+                fontWeight: 500,
+              }}
+            >
+              Full Stack Web Developer
+            </h2>
           </div>
         </div>
+
+        {/* Brief paragraph */}
+        <p
+          style={{
+            fontSize: "1.25rem", // Increased from 1rem
+            color: "#8892b0",
+            maxWidth: "600px",
+            marginTop: "8px",
+            lineHeight: 1.5,
+          }}
+        >
+          I build accessible, pixel-perfect digital experiences for the web. My
+          focus is on crafting clean, performant code and delightful user
+          interfaces.
+        </p>
       </div>
 
-      <nav style={navStyle}>
+      {/* Main navigation links (vertical) */}
+      <nav
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          marginBottom: "48px",
+        }}
+      >
         <a
-          style={navLinkStyle}
+          href="#about"
+          style={getLinkStyle("about")}
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
-          href="#about"
         >
           About
         </a>
         <a
-          style={navLinkStyle}
+          href="#experience"
+          style={getLinkStyle("experience")}
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
-          href="#experience"
         >
           Experience
         </a>
         <a
-          style={navLinkStyle}
+          href="#project"
+          style={getLinkStyle("project")}
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
-          href="#project"
         >
-          Project
+          Projects
         </a>
       </nav>
 
-      <div style={docLinksStyle}>
+      {/* Secondary navigation (Resume, Certification) */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
         <span
-          style={docLinkStyle}
+          style={{
+            fontSize: "1.5rem", // Increased from 1.25rem
+            fontWeight: "bold",
+            color: "#8892b0",
+            cursor: "pointer",
+            transition: "color 0.3s",
+            textTransform: "uppercase",
+          }}
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
           onClick={() => setShowResume(true)}
@@ -177,7 +214,14 @@ function Header() {
           Resume
         </span>
         <span
-          style={docLinkStyle}
+          style={{
+            fontSize: "1.5rem", // Increased from 1.25rem
+            fontWeight: "bold",
+            color: "#8892b0",
+            cursor: "pointer",
+            transition: "color 0.3s",
+            textTransform: "uppercase",
+          }}
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
           onClick={() => setShowDiploma(true)}
@@ -186,11 +230,12 @@ function Header() {
         </span>
       </div>
 
-      <div style={socialContainerStyle}>
+      {/* Social links at the bottom */}
+      <div>
         <SocialLinks vertical={false} />
       </div>
 
-      {/* Resume PDF Modal */}
+      {/* Document Modals */}
       {showResume && (
         <DocumentModal
           src="/docs/Ashish Patel Resume.pdf"
@@ -198,7 +243,6 @@ function Header() {
         />
       )}
 
-      {/* Diploma PDF Modal */}
       {showDiploma && (
         <DocumentModal
           src="/docs/Ashish Patel DIPLOMA April 28, 2023 (1).pdf"
@@ -209,19 +253,21 @@ function Header() {
   );
 }
 
-// Export the styles and image that App.js needs
 export { linkedinImg };
+
 export const nameStyle = {
-  fontSize: "2.5rem",
+  fontSize: "3.5rem", // Increased from 2.75rem
   fontWeight: "bold",
   margin: 0,
-  color: "#ffffff",
+  color: "#e6f1ff",
+  lineHeight: 1.1,
 };
 
 export const titleStyle = {
-  fontSize: "1.2rem",
+  fontSize: "1.5rem", // Increased from 1.2rem
   color: "#64ffda",
   margin: "8px 0 0 0",
+  fontWeight: 500,
 };
 
 export default Header;
