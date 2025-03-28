@@ -24,59 +24,6 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const containerStyle = {
-    backgroundColor: "#0a192f",
-    color: "#e6f1ff",
-    minHeight: "100vh",
-    margin: 0,
-    padding: 0,
-    boxSizing: "border-box",
-  };
-
-  const layoutStyle = {
-    display: "flex",
-    flexDirection: isMobile ? "column" : "row",
-    maxWidth: "1400px",
-    margin: "0 auto",
-    padding: isMobile ? "0" : "0 24px",
-  };
-
-  const contentStyle = {
-    width: isMobile ? "100%" : "52%",
-    padding: isMobile ? "24px 16px" : "24px 0 24px 48px",
-  };
-
-  const mobileHeaderStyle = {
-    display: "flex",
-    flexDirection: "column",
-    padding: "24px 16px",
-  };
-
-  const profileStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "20px",
-    marginBottom: "24px",
-  };
-
-  const imageStyle = {
-    width: "60px",
-    height: "60px",
-    borderRadius: "50%",
-    objectFit: "cover",
-    border: "2px solid #64ffda",
-  };
-
-  const docLinkStyle = {
-    fontSize: "1rem",
-    fontWeight: "bold",
-    color: "#e6f1ff",
-    cursor: "pointer",
-    transition: "color 0.3s",
-    textTransform: "uppercase",
-    marginRight: "24px",
-  };
-
   const handleHoverEnter = (e) => {
     e.target.style.color = "#64ffda";
   };
@@ -86,13 +33,52 @@ function App() {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={layoutStyle}>
+    <div
+      style={{
+        backgroundColor: "#0a192f",
+        color: "#e6f1ff",
+        minHeight: "100vh",
+        margin: 0,
+        padding: 0,
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          margin: "0 auto",
+          padding: isMobile ? "0" : "0 24px",
+        }}
+      >
         {!isMobile && <Header />}
         {isMobile && (
-          <div style={mobileHeaderStyle}>
-            <div style={profileStyle}>
-              <img src={linkedinImg} alt="Ashish Patel" style={imageStyle} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              padding: "24px 16px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                marginBottom: "24px",
+              }}
+            >
+              <img
+                src={linkedinImg}
+                alt="Ashish Patel"
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  border: "2px solid #64ffda",
+                }}
+              />
               <div>
                 <h1 style={nameStyle}>Ashish Patel</h1>
                 <h2 style={titleStyle}>Full Stack Web Developer</h2>
@@ -100,7 +86,15 @@ function App() {
             </div>
             <div style={{ marginBottom: "24px" }}>
               <span
-                style={docLinkStyle}
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: "bold",
+                  color: "#e6f1ff",
+                  cursor: "pointer",
+                  transition: "color 0.3s",
+                  textTransform: "uppercase",
+                  marginRight: "24px",
+                }}
                 onMouseEnter={handleHoverEnter}
                 onMouseLeave={handleHoverLeave}
                 onClick={() => setShowResume(true)}
@@ -108,7 +102,15 @@ function App() {
                 Resume
               </span>
               <span
-                style={docLinkStyle}
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: "bold",
+                  color: "#e6f1ff",
+                  cursor: "pointer",
+                  transition: "color 0.3s",
+                  textTransform: "uppercase",
+                  marginRight: "24px",
+                }}
                 onMouseEnter={handleHoverEnter}
                 onMouseLeave={handleHoverLeave}
                 onClick={() => setShowDiploma(true)}
@@ -118,7 +120,13 @@ function App() {
             </div>
           </div>
         )}
-        <main style={contentStyle} id="content">
+        <main
+          style={{
+            width: isMobile ? "100%" : "50%",
+            padding: isMobile ? "24px 16px" : "104px 120px 24px 0px",
+          }}
+          id="content"
+        >
           <AboutSection />
           <ExperienceSection />
           <ProjectsSection />
@@ -127,11 +135,15 @@ function App() {
 
       {/* Document Modals */}
       <DocumentModal
-        src={showResume ? "/path-to-your-resume.pdf" : null}
+        src={showResume ? "/docs/Ashish Patel Resume.pdf" : null}
         onClose={() => setShowResume(false)}
       />
       <DocumentModal
-        src={showDiploma ? "/path-to-your-diploma.pdf" : null}
+        src={
+          showDiploma
+            ? "/docs/Ashish Patel DIPLOMA April 28, 2023 (1).pdf"
+            : null
+        }
         onClose={() => setShowDiploma(false)}
       />
     </div>
