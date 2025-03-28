@@ -17,8 +17,8 @@ function ExperienceCard({
     position: "relative",
     marginBottom: "48px", // Increased bottom margin between cards
     display: "flex",
-    gap: "100px", // Increased gap between date and content
-    padding: "8px", // Added some padding
+    gap: "80px", // Increased gap between date and content
+    padding: "30px", // Added some padding
     borderRadius: "4px",
     width: "100%", // Take up full width
     maxWidth: "1200px", // Increased max width
@@ -46,16 +46,16 @@ function ExperienceCard({
   // Period column
   const periodStyle = {
     fontFamily: "monospace",
-    fontSize: "14px",
+    fontSize: "16px",
     color: "#8892b0",
     minWidth: "140px",
     paddingTop: "8px", // Align with title
+    whiteSpace: "nowrap", // Prevent wrapping
   };
 
   // Content column
   const contentStyle = {
-    flex: 1,
-    maxWidth: "1000px", // Increased max-width
+    // flex: 1,
   };
 
   const titleStyle = {
