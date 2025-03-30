@@ -73,6 +73,9 @@ function Header() {
     letterSpacing: "1px",
     cursor: "pointer",
     transition: "all 0.3s",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
   });
 
   return (
@@ -170,6 +173,7 @@ function Header() {
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
         >
+          <span style={{ color: "#64ffda", marginRight: "10px" }}>—</span>
           About
         </a>
         <a
@@ -178,6 +182,7 @@ function Header() {
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
         >
+          <span style={{ color: "#64ffda", marginRight: "10px" }}>—</span>
           Experience
         </a>
         <a
@@ -186,6 +191,7 @@ function Header() {
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
         >
+          <span style={{ color: "#64ffda", marginRight: "10px" }}>—</span>
           Projects
         </a>
       </nav>
