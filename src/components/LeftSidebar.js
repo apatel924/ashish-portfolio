@@ -36,7 +36,7 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "experience", "project"];
+      const sections = ["about", "experience", "projects"]; // Changed 'project' to 'projects'
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
@@ -142,7 +142,7 @@ function Header() {
         {/* Brief paragraph */}
         <p
           style={{
-            fontSize: "1.25rem", // Increased from 1rem
+            fontSize: "1.5rem", // Increased from 1rem
             color: "#8892b0",
             maxWidth: "600px",
             marginTop: "8px",
@@ -181,8 +181,8 @@ function Header() {
           Experience
         </a>
         <a
-          href="#project"
-          style={getLinkStyle("project")}
+          href="#projects"
+          style={getLinkStyle("projects")}
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
         >
@@ -200,7 +200,7 @@ function Header() {
       >
         <span
           style={{
-            fontSize: "1.5rem", // Increased from 1.25rem
+            fontSize: "1.5rem",
             fontWeight: "bold",
             color: "#8892b0",
             cursor: "pointer",
