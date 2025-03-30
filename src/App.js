@@ -48,7 +48,7 @@ function App() {
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
           margin: "0 auto",
-          padding: isMobile ? "0" : "0 24px",
+          padding: isMobile ? "0" : "0 32px", // Increased padding
         }}
       >
         {!isMobile && <Header />}
@@ -57,43 +57,45 @@ function App() {
             style={{
               display: "flex",
               flexDirection: "column",
-              padding: "24px 16px",
+              padding: "32px 24px", // Increased padding
             }}
           >
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "20px",
-                marginBottom: "24px",
+                gap: "24px", // Increased gap
+                marginBottom: "32px", // Increased margin
               }}
             >
               <img
                 src={linkedinImg}
                 alt="Ashish Patel"
                 style={{
-                  width: "60px",
-                  height: "60px",
+                  width: "250px", // Increased size
+                  height: "250px", // Increased size
                   borderRadius: "50%",
                   objectFit: "cover",
-                  border: "2px solid #64ffda",
+                  border: "3px solid #64ffda", // Increased border width
                 }}
               />
               <div>
-                <h1 style={nameStyle}>Ashish Patel</h1>
-                <h2 style={titleStyle}>Full Stack Web Developer</h2>
+                <h1 style={{ ...nameStyle, fontSize: "6rem" }}>Ashish Patel</h1>
+                <h2 style={{ ...titleStyle, fontSize: "1.8rem" }}>
+                  Full Stack Web Developer
+                </h2>
               </div>
             </div>
-            <div style={{ marginBottom: "24px" }}>
+            <div style={{ marginBottom: "20px" }}>
               <span
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "1.4rem", // Increased font size
                   fontWeight: "bold",
                   color: "#e6f1ff",
                   cursor: "pointer",
                   transition: "color 0.3s",
                   textTransform: "uppercase",
-                  marginRight: "24px",
+                  marginRight: "32px", // Increased margin
                 }}
                 onMouseEnter={handleHoverEnter}
                 onMouseLeave={handleHoverLeave}
@@ -103,13 +105,13 @@ function App() {
               </span>
               <span
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "1.4rem", // Increased font size
                   fontWeight: "bold",
                   color: "#e6f1ff",
                   cursor: "pointer",
                   transition: "color 0.3s",
                   textTransform: "uppercase",
-                  marginRight: "24px",
+                  marginRight: "32px", // Increased margin
                 }}
                 onMouseEnter={handleHoverEnter}
                 onMouseLeave={handleHoverLeave}
@@ -123,7 +125,7 @@ function App() {
         <main
           style={{
             width: isMobile ? "100%" : "50%",
-            padding: isMobile ? "24px 16px" : "104px 120px 24px 0px",
+            padding: isMobile ? "32px 24px" : "120px 140px 32px 0px", // Increased padding
           }}
           id="content"
         >
