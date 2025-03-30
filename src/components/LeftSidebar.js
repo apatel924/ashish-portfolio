@@ -173,7 +173,7 @@ function Header() {
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
         >
-          <span style={{ color: "#64ffda", marginRight: "10px" }}>—</span>
+          <span style={{ color: "#64ffda", marginRight: "10px" }}>----</span>
           About
         </a>
         <a
@@ -182,7 +182,7 @@ function Header() {
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
         >
-          <span style={{ color: "#64ffda", marginRight: "10px" }}>—</span>
+          <span style={{ color: "#64ffda", marginRight: "10px" }}>----</span>
           Experience
         </a>
         <a
@@ -191,7 +191,7 @@ function Header() {
           onMouseEnter={handleHoverEnter}
           onMouseLeave={handleHoverLeave}
         >
-          <span style={{ color: "#64ffda", marginRight: "10px" }}>—</span>
+          <span style={{ color: "#64ffda", marginRight: "10px" }}>----</span>
           Projects
         </a>
       </nav>
