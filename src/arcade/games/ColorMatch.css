@@ -1,0 +1,436 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* Dialed-inspired color dial — scoped under .dialed */
+.dialed {
+  --dialed-purple: #3b2c55;
+  --dialed-purple-deep: #2a1f3d;
+  --dialed-page: #ffffff;
+  --dialed-text: #1a1a1a;
+  --dialed-muted: rgba(255, 255, 255, 0.55);
+  --dialed-muted-dark: #6b7280;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--dialed-page);
+  color: var(--dialed-text);
+  min-height: 546px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 16px 13px 10px;
+  box-sizing: border-box;
+}
+
+.dialed__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+  padding: 0 4px;
+}
+
+.dialed__brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+}
+
+.dialed__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--dialed-text);
+}
+
+.dialed__nav span {
+  opacity: 0.35;
+}
+
+.dialed__nav strong {
+  font-weight: 700;
+}
+
+.dialed__stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 416px;
+}
+
+.dialed__card {
+  width: 100%;
+  max-width: 676px;
+  min-height: 364px;
+  background: var(--dialed-purple);
+  border-radius: 26px;
+  box-shadow: 0 16px 52px rgba(59, 44, 85, 0.35);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialed__card--full {
+  background: var(--card-bg, var(--dialed-purple));
+}
+
+.dialed__card-inner {
+  flex: 1;
+  padding: 23px 26px 21px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 338px;
+}
+
+.dialed__round {
+  position: absolute;
+  top: 21px;
+  left: 23px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--dialed-muted);
+  letter-spacing: 0.02em;
+}
+
+.dialed__memorize-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 8%;
+  padding-top: 8%;
+}
+
+.dialed__count {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 600;
+  color: var(--dialed-muted);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.dialed__count-label {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--dialed-muted);
+}
+
+.dialed__go {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+}
+
+/* Recall: sliders + preview */
+.dialed__recall {
+  display: flex;
+  flex: 1;
+  gap: 16px;
+  align-items: stretch;
+  min-height: 286px;
+  padding-top: 36px;
+}
+
+.dialed__sliders {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.dialed__slider-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialed__slider-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--dialed-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dialed__slider-track {
+  --track-len: 182px;
+  position: relative;
+  width: 29px;
+  height: var(--track-len);
+  border-radius: 15px;
+  /* overflow visible so the rotated range input is not clipped from hit-testing */
+  overflow: visible;
+}
+
+.dialed__slider-track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dialed__slider-track--hue::before {
+  background: linear-gradient(
+    to bottom,
+    #f00,
+    #ff0,
+    #0f0,
+    #0ff,
+    #00f,
+    #f0f,
+    #f00
+  );
+}
+
+.dialed__slider-track--sat::before {
+  background: linear-gradient(to bottom, #888, var(--sat-preview, #c77));
+}
+
+.dialed__slider-track--bri::before {
+  background: linear-gradient(to bottom, #000, var(--bri-preview, #fff));
+}
+
+.dialed__slider-input {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--track-len);
+  height: 29px;
+  margin: 0;
+  padding: 0;
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+  touch-action: none;
+}
+
+.dialed__slider-thumb {
+  position: absolute;
+  left: 50%;
+  width: 23px;
+  height: 23px;
+  margin-left: -12px;
+  margin-top: -12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  z-index: 1;
+  top: 50%;
+}
+
+.dialed__preview {
+  flex: 1;
+  border-radius: 18px;
+  background: var(--preview, #888);
+  position: relative;
+  min-width: 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.dialed__submit {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: var(--dialed-purple);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.dialed__submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.dialed__submit svg {
+  width: 29px;
+  height: 29px;
+}
+
+/* Result split */
+.dialed__result-split {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-top: 31px;
+  min-height: 260px;
+}
+
+.dialed__result-half {
+  flex: 1;
+  padding: 21px 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.dialed__result-half--yours {
+  background: var(--your-bg);
+}
+
+.dialed__result-half--target {
+  background: var(--target-bg);
+}
+
+.dialed__result-meta {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 4px;
+}
+
+.dialed__result-hsb {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.02em;
+}
+
+.dialed__result-score {
+  position: absolute;
+  top: 50%;
+  right: 23px;
+  transform: translateY(-50%);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: -0.03em;
+}
+
+.dialed__snark {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(42px);
+  max-width: 55%;
+  text-align: right;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.35;
+}
+
+.dialed__next {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: var(--dialed-purple);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.dialed__footer {
+  margin-top: 8px;
+  font-size: 0.6rem;
+  color: var(--dialed-muted-dark);
+  padding: 0 4px;
+  line-height: 1.4;
+}
+
+.dialed__idle {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.dialed__idle h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.dialed__idle p {
+  margin: 0 0 20px;
+  font-size: 0.82rem;
+  color: var(--dialed-muted-dark);
+  line-height: 1.5;
+}
+
+.dialed__btn-primary {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  background: var(--dialed-purple);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(59, 44, 85, 0.35);
+}
+
+.dialed__btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.dialed__final {
+  text-align: center;
+  padding: 28px 16px;
+}
+
+.dialed__final h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+.dialed__final .dialed__big-score {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dialed-purple);
+  margin: 8px 0 20px;
+}
+
+@media (max-width: 480px) {
+  .dialed__recall {
+    flex-direction: column;
+  }
+
+  .dialed__sliders {
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .dialed__slider-track {
+    --track-len: 130px;
+  }
+}
