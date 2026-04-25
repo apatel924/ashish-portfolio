@@ -1,0 +1,167 @@
+.aim-arena {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: min(240px, 42vw);
+  min-height: 180px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: radial-gradient(ellipse at 30% 20%, rgba(168, 255, 120, 0.08), transparent 55%),
+    linear-gradient(145deg, #12101c 0%, #0a0912 100%);
+  border: 1px solid rgba(46, 44, 68, 0.95);
+  box-sizing: border-box;
+  touch-action: none;
+  user-select: none;
+}
+
+.aim-arena__meta {
+  font-size: 6px;
+  letter-spacing: 1px;
+  color: var(--dim, #6b6980);
+  margin-bottom: 8px;
+}
+
+.aim-arena__meta strong {
+  color: var(--aim-accent, #a8ff78);
+}
+
+.aim-arena__end {
+  font-size: 5px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  margin-top: 0;
+  display: inline;
+  vertical-align: middle;
+}
+
+.aim-results {
+  align-items: stretch;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.aim-results__sub {
+  margin-bottom: 4px;
+}
+
+.aim-lb {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  font-size: 6px;
+  letter-spacing: 0.5px;
+  line-height: 1.9;
+  border: 1px solid rgba(46, 44, 68, 0.85);
+  border-radius: 6px;
+  background: rgba(18, 16, 28, 0.65);
+  overflow: hidden;
+}
+
+.aim-lb__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(46, 44, 68, 0.5);
+  color: #9a97b0;
+}
+
+.aim-lb__row:last-child {
+  border-bottom: none;
+}
+
+.aim-lb__row--you {
+  background: rgba(168, 255, 120, 0.1);
+  color: var(--aim-accent, #a8ff78);
+}
+
+.aim-lb__rank {
+  flex: 0 0 1.2em;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.aim-lb__line {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.aim-dart {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  cursor: crosshair;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 3px solid var(--aim-accent, #a8ff78);
+  background: radial-gradient(
+      circle at 35% 30%,
+      rgba(255, 255, 255, 0.22) 0%,
+      transparent 28%
+    ),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      transparent 0,
+      transparent 5px,
+      rgba(168, 255, 120, 0.12) 5px,
+      rgba(168, 255, 120, 0.12) 6px
+    ),
+    #1a1828;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35), 0 4px 14px rgba(168, 255, 120, 0.15);
+  transition: transform 0.08s ease-out;
+}
+
+.aim-dart:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35), 0 0 18px rgba(168, 255, 120, 0.35);
+}
+
+.aim-dart__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(168, 255, 120, 0.45);
+  width: 70%;
+  height: 70%;
+  pointer-events: none;
+}
+
+.aim-dart__bull {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--aim-accent, #a8ff78);
+  box-shadow: 0 0 8px rgba(168, 255, 120, 0.6);
+  pointer-events: none;
+}
+
+.aim-dart__shaft {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 22px;
+  background: linear-gradient(180deg, #c9b896, #6b5d45);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.aim-dart__flights {
+  position: absolute;
+  bottom: calc(100% + 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 14px solid var(--aim-accent, #a8ff78);
+  opacity: 0.85;
+  pointer-events: none;
+}
