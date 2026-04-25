@@ -1,0 +1,16 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Create React App (react-scripts) — output is the `build` folder
+  # CI= clears CI so ESLint warnings (common on Netlify) do not fail the build
+  command = "CI= npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app: return index.html for client-side routes (if you add React Router later)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
