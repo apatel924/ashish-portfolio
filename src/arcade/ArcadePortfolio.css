@@ -929,8 +929,33 @@
   max-width: 420px;
 }
 
+/* Five stat cards in a single row (overrides the default 3-up grid). */
+.arcade-stat-grid.arcade-stat-grid--player {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+.arcade-stat-grid--player .arcade-stat-box {
+  min-width: 0;
+  padding: 12px 6px 10px;
+}
+
+.arcade-stat-section-label {
+  margin: 12px 0 10px;
+}
+
+.arcade-stat-section-hint {
+  margin: 8px 0 0;
+  max-width: 48ch;
+  font-family: "VT323", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: #6b7a8a;
+}
+
 @media (max-width: 640px) {
-  .arcade-stat-grid:not(.arcade-stat-grid--single) {
+  .arcade-stat-grid:not(.arcade-stat-grid--single):not(.arcade-stat-grid--player) {
     grid-template-columns: 1fr;
   }
 }
@@ -982,8 +1007,8 @@
 .arcade-stat-kicker {
   display: block;
   font-family: "Press Start 2P", cursive;
-  font-size: 0.5625rem;
-  letter-spacing: 0.08em;
+  font-size: 8px;
+  letter-spacing: 0.18em;
   color: #5c6378;
   margin-bottom: 6px;
   text-transform: uppercase;
@@ -1002,7 +1027,7 @@
 .arcade-stat-lbl {
   display: block;
   font-family: "Press Start 2P", cursive;
-  font-size: 0.6875rem;
+  font-size: 7px;
   color: #9aa3b8;
   line-height: 1.5;
 }
@@ -1248,7 +1273,7 @@
     display: none;
   }
 
-  .arcade-stat-grid {
+  .arcade-stat-grid:not(.arcade-stat-grid--player) {
     grid-template-columns: 1fr;
   }
 }
