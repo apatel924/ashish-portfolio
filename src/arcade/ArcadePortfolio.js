@@ -3,7 +3,7 @@ import arcadeRevampContent from "../data/arcadeRevamp.content";
 import { projectsData } from "../data/projects";
 import { resolveExperienceWithProjects } from "../data/arcadeImageMap";
 import DocumentModal from "../components/DocumentModal";
-import ProjectCoverflowModal from "../components/ProjectCoverflowModal";
+import ProjectCoverFlowModal from "../components/ProjectCoverFlowModal";
 import ArcadeTopBar from "./ArcadeTopBar";
 import ArcadeInfoPanel from "./ArcadeInfoPanel";
 import { buildCabinets, isCabinetInSidebar } from "./buildCabinets";
@@ -225,7 +225,7 @@ function ArcadePortfolio() {
         </footer>
       </div>
 
-      <ProjectCoverflowModal images={galleryImages} onClose={() => setGalleryImages(null)} />
+      <ProjectCoverFlowModal images={galleryImages} onClose={() => setGalleryImages(null)} />
       <DocumentModal
         src={showResume ? arcadeRevampContent.resume.publicUrl : null}
         onClose={() => setShowResume(false)}

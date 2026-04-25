@@ -16,7 +16,7 @@ const arcadeRevampContent = {
     heroTagline:
       "Dashboards, product pages, APIs, and maintainable front ends—arcade edition.",
     playerAbout:
-      "I build client-facing dashboards, marketing and product pages, and the backend structure that keeps features shippable. Use the cabinets on the left to flip between roles, the Projects cabinet for the full showroom, and Play for mini-games.",
+      "I build client-facing dashboards, marketing and product pages, and the backend structure that keeps features shippable. Outside of work I stay pretty athletic—badminton, soccer, baseball, cricket, and a few other sports—I play chess, love to dance, and I’m a regular at the gym. I’m also into games: Apex Legends, CS:GO, and Valorant. Use the cabinets on the left to flip between roles, the Projects cabinet for the full showroom, and Play for mini-games.",
   },
 
   resume: {

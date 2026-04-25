@@ -982,11 +982,12 @@
 .arcade-stat-kicker {
   display: block;
   font-family: "Press Start 2P", cursive;
-  font-size: 4.5px;
-  letter-spacing: 1.4px;
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
   color: #5c6378;
   margin-bottom: 6px;
   text-transform: uppercase;
+  line-height: 1.5;
 }
 
 .arcade-stat-num {
@@ -1001,9 +1002,9 @@
 .arcade-stat-lbl {
   display: block;
   font-family: "Press Start 2P", cursive;
-  font-size: 5.5px;
+  font-size: 0.6875rem;
   color: #9aa3b8;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 .arcade-stat-detail {
