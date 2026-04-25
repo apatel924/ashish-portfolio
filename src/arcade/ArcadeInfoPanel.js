@@ -45,6 +45,10 @@ export default function ArcadeInfoPanel({ cabinet, onOpenGallery }) {
 
   if (kind === "about") {
     const { meta } = cabinet;
+    const playerStats = Array.isArray(meta.playerStats) ? meta.playerStats : [];
+    const n = playerStats.length;
+    const bioI = n === 0 ? 4 : 5 + n;
+    const tagI = n === 0 ? 5 : 6 + n;
     return (
       <div className="arcade-info-panel">
         <div className="arcade-stat-grid arcade-stat-grid--single">
@@ -55,9 +59,40 @@ export default function ArcadeInfoPanel({ cabinet, onOpenGallery }) {
             <span className="arcade-stat-lbl">I&apos;m Ashish — thanks for playing</span>
           </div>
         </div>
+        {playerStats.length > 0 && (
+          <>
+            <div
+              className="arcade-stat-section-label arcade-cascade-in"
+              style={{ "--cascade-index": 4 }}
+            >
+              <div className="arcade-info-label" style={{ color: accent }}>
+                BASE ATTRIBUTES
+              </div>
+              <p className="arcade-stat-section-hint">RPG bar chart energy for real-life hobbies (theme, not a scoreboard).</p>
+            </div>
+            <div className="arcade-stat-grid arcade-stat-grid--player">
+              {playerStats.map((st, i) => (
+                <div
+                  key={`${st.kicker ?? "stat"}-${i}`}
+                  className="arcade-stat-box arcade-cascade-in"
+                  style={{ "--stat-accent": accent, "--cascade-index": 5 + i }}
+                >
+                  {st.kicker && (
+                    <span className="arcade-stat-kicker">{st.kicker}</span>
+                  )}
+                  <span className="arcade-stat-num" style={{ color: accent }}>
+                    {st.num}
+                  </span>
+                  <span className="arcade-stat-lbl">{st.label}</span>
+                  {st.detail && <span className="arcade-stat-detail">{st.detail}</span>}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
         <div
           className="arcade-info-block arcade-cascade-in"
-          style={{ borderLeftColor: accent, "--cascade-index": 4 }}
+          style={{ borderLeftColor: accent, "--cascade-index": bioI }}
         >
           <div className="arcade-info-label" style={{ color: accent }}>
             PLAYER BIO
@@ -66,7 +101,7 @@ export default function ArcadeInfoPanel({ cabinet, onOpenGallery }) {
         </div>
         <div
           className="arcade-info-block arcade-cascade-in"
-          style={{ borderLeftColor: accent, "--cascade-index": 5 }}
+          style={{ borderLeftColor: accent, "--cascade-index": tagI }}
         >
           <div className="arcade-info-label" style={{ color: accent }}>
             TAGLINE
