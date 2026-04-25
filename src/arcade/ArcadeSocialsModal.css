@@ -1,0 +1,154 @@
+.arcade-socials-portal {
+  position: fixed;
+  inset: 0;
+  z-index: 10040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  font-family: "Press Start 2P", cursive;
+  pointer-events: auto;
+}
+
+.arcade-socials-portal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(3, 2, 8, 0.82);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.arcade-socials-panel {
+  position: relative;
+  z-index: 1;
+  width: min(28rem, 100%);
+  max-height: min(80vh, 32rem);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.25rem 1.25rem;
+  color: #e8f7ff;
+  background: linear-gradient(180deg, #0c0818 0%, #080510 100%);
+  border: 2px solid rgba(60, 242, 200, 0.65);
+  box-shadow: 0 0 0 2px #05030a, 0 0 32px rgba(60, 242, 200, 0.2);
+}
+
+.arcade-socials-panel__header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.arcade-socials-panel__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.55rem;
+  line-height: 1.6;
+  letter-spacing: 0.12em;
+  color: #ff2d9b;
+  text-shadow: 0 0 10px rgba(255, 45, 155, 0.45);
+}
+
+.arcade-socials-panel__sub {
+  margin: 0;
+  font-size: 0.32rem;
+  line-height: 1.7;
+  color: #e8b84a;
+  letter-spacing: 0.05em;
+}
+
+.arcade-socials-panel__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.arcade-socials-panel__row + .arcade-socials-panel__row {
+  margin-top: 0.5rem;
+}
+
+.arcade-socials-panel__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  text-decoration: none;
+  color: #3cf2c8;
+  font-size: 0.4rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  border: 2px solid rgba(60, 242, 200, 0.35);
+  background: rgba(20, 14, 32, 0.65);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.arcade-socials-panel__link:hover,
+.arcade-socials-panel__link:focus-visible {
+  outline: none;
+  border-color: #3cf2c8;
+  color: #e8f7ff;
+  background: rgba(60, 242, 200, 0.12);
+}
+
+.arcade-socials-panel__ext {
+  flex-shrink: 0;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+}
+
+.arcade-socials-panel__link:hover .arcade-socials-panel__ext,
+.arcade-socials-panel__link:focus-visible .arcade-socials-panel__ext {
+  opacity: 1;
+}
+
+.arcade-socials-panel__link-label {
+  text-align: left;
+}
+
+.arcade-socials-panel__footer {
+  margin: 1rem 0 0.75rem;
+  text-align: center;
+  font-size: 0.3rem;
+  color: #4a5f6c;
+  letter-spacing: 0.06em;
+}
+
+.arcade-socials-panel__kbd {
+  color: #e8b84a;
+}
+
+.arcade-socials-panel__close {
+  align-self: center;
+  margin-top: 0.25rem;
+  padding: 0.5rem 1.25rem;
+  font: inherit;
+  font-size: 0.32rem;
+  color: #0a0618;
+  background: #e8b84a;
+  border: 2px solid #b8860b;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  box-shadow: 0 2px 0 #6b4a08;
+}
+
+.arcade-socials-panel__close:hover,
+.arcade-socials-panel__close:focus-visible {
+  outline: none;
+  filter: brightness(1.05);
+}
+
+.arcade-socials-panel__close:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #6b4a08;
+}
+
+@media (min-width: 480px) {
+  .arcade-socials-panel__link {
+    font-size: 0.42rem;
+  }
+}
