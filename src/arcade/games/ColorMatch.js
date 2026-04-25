@@ -69,8 +69,8 @@ function rgbString(h, s, v) {
   return `rgb(${r},${g},${b})`;
 }
 
-/** 0 = identical colors; 100+ = very different. Map with exponential decay. */
-const DELTA_E_SCORE_DECAY = 6.5;
+/** 0 = identical colors; 100+ = very different. Map with exponential decay. Larger = more forgiving. */
+const DELTA_E_SCORE_DECAY = 15;
 
 function roundScore(target, user) {
   const t = hsvToRgb(target.h, target.s, target.b);

@@ -496,7 +496,7 @@
   font-size: 1.2rem;
   color: var(--arcade-text-muted);
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 4;  
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
