@@ -1,0 +1,1253 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+:root {
+  --arcade-bg-deep: #070510;
+  --arcade-bg-mid: #120a22;
+  --arcade-panel: rgba(18, 10, 36, 0.92);
+  --arcade-cyan: #3cf2c8;
+  --arcade-cyan-dim: #1a9a7e;
+  --arcade-magenta: #ff2d9b;
+  --arcade-gold: #e8b84a;
+  --arcade-text: #e8f7ff;
+  --arcade-text-muted: #8ba3b5;
+  --arcade-bezel-dark: #2a1810;
+  --arcade-bezel-light: #5c3d2e;
+  --arcade-screen-off: #0d1520;
+}
+
+.arcade-root {
+  min-height: 100vh;
+  background: radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(60, 242, 200, 0.08),
+      transparent 55%
+    ),
+    linear-gradient(180deg, var(--arcade-bg-deep) 0%, var(--arcade-bg-mid) 45%, #0a0612 100%);
+  color: var(--arcade-text);
+  font-family: "VT323", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.45;
+  padding-bottom: 4rem;
+}
+
+.arcade-root * {
+  box-sizing: border-box;
+}
+
+/* Subtle scanlines */
+.arcade-root::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  opacity: 0.5;
+}
+
+.arcade-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .arcade-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+}
+
+.arcade-header__avatar-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--arcade-cyan), var(--arcade-magenta));
+  box-shadow: 0 0 24px rgba(60, 242, 200, 0.35);
+}
+
+.arcade-header__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 3px solid var(--arcade-bg-deep);
+}
+
+.arcade-header__title {
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+  color: var(--arcade-cyan);
+  text-shadow: 0 0 12px rgba(60, 242, 200, 0.45);
+  letter-spacing: 0.04em;
+}
+
+.arcade-header__subtitle {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  color: var(--arcade-text-muted);
+}
+
+.arcade-header__about {
+  margin: 0 0 1.25rem;
+  max-width: 52ch;
+  color: var(--arcade-text);
+  font-size: 1.4rem;
+}
+
+.arcade-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.arcade-btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--arcade-cyan);
+  background: rgba(60, 242, 200, 0.12);
+  color: var(--arcade-cyan);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.arcade-btn:hover {
+  background: rgba(60, 242, 200, 0.22);
+  box-shadow: 0 0 18px rgba(60, 242, 200, 0.35);
+  color: #fff;
+}
+
+.arcade-btn--ghost {
+  border-color: var(--arcade-magenta);
+  color: var(--arcade-magenta);
+  background: rgba(255, 45, 155, 0.1);
+}
+
+.arcade-btn--ghost:hover {
+  background: rgba(255, 45, 155, 0.2);
+  box-shadow: 0 0 18px rgba(255, 45, 155, 0.3);
+}
+
+.arcade-social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.arcade-social a {
+  color: var(--arcade-text-muted);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.arcade-social a:hover {
+  color: var(--arcade-cyan);
+  transform: scale(1.12);
+}
+
+.arcade-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0;
+}
+
+.arcade-section__title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.65rem;
+  color: var(--arcade-magenta);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 1.5rem;
+  text-shadow: 0 0 14px rgba(255, 45, 155, 0.35);
+}
+
+/* —— Cabinet —— */
+.arcade-cabinet {
+  margin-bottom: 3rem;
+  background: linear-gradient(
+    145deg,
+    var(--arcade-bezel-light) 0%,
+    var(--arcade-bezel-dark) 40%,
+    #1a0f0a 100%
+  );
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border: 2px solid #1a1008;
+}
+
+.arcade-cabinet__marquee {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  text-align: center;
+  padding: 0.9rem 0.5rem;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #1a0a20, #2a1040, #1a0a20);
+  color: var(--arcade-gold);
+  text-shadow: 0 0 8px rgba(232, 184, 74, 0.5);
+  border-radius: 6px;
+  border: 2px solid rgba(232, 184, 74, 0.35);
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+
+.arcade-cabinet__body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.25rem;
+  background: var(--arcade-panel);
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 1px solid rgba(60, 242, 200, 0.15);
+}
+
+@media (max-width: 900px) {
+  .arcade-cabinet__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.arcade-cabinet__meta {
+  font-size: 1.15rem;
+  color: var(--arcade-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.arcade-cabinet__role {
+  margin: 0 0 0.75rem;
+  font-size: 1.65rem;
+  color: var(--arcade-text);
+}
+
+.arcade-cabinet__about {
+  margin: 0 0 1rem;
+  color: var(--arcade-text);
+  font-size: 1.35rem;
+}
+
+.arcade-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.arcade-tech-pill {
+  font-size: 1.05rem;
+  padding: 0.2rem 0.55rem;
+  background: rgba(60, 242, 200, 0.12);
+  border: 1px solid rgba(60, 242, 200, 0.35);
+  color: var(--arcade-cyan);
+  border-radius: 4px;
+}
+
+.arcade-tech-pill--project {
+  background: rgba(232, 184, 74, 0.12);
+  border-color: rgba(232, 184, 74, 0.45);
+  color: var(--arcade-gold);
+}
+
+.arcade-linked-projects {
+  margin-top: 1rem;
+}
+
+.arcade-linked-projects__label {
+  display: block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.42rem;
+  color: var(--arcade-text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.45rem;
+}
+
+.arcade-screen-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.arcade-screen {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--arcade-screen-off);
+  border-radius: 6px;
+  border: 3px solid #1e2a35;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+}
+
+.arcade-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.arcade-screen.arcade-screen--static {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--arcade-cyan-dim);
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.8;
+}
+
+.arcade-thumbs {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--arcade-cyan) transparent;
+}
+
+.arcade-thumb {
+  flex: 0 0 72px;
+  height: 52px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  background: #000;
+  opacity: 0.75;
+  transition: opacity 0.15s, border-color 0.15s;
+}
+
+.arcade-thumb:hover {
+  opacity: 1;
+}
+
+.arcade-thumb--active {
+  border-color: var(--arcade-cyan);
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(60, 242, 200, 0.4);
+}
+
+.arcade-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.arcade-screen-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.arcade-screen-actions .arcade-btn {
+  flex: 1;
+  min-width: 120px;
+  font-size: 0.5rem;
+  padding: 0.65rem 0.5rem;
+}
+
+.arcade-game-panel {
+  margin-top: 0.75rem;
+  padding: 0.85rem;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #0a1218,
+    #0a1218 2px,
+    #0d1620 2px,
+    #0d1620 4px
+  );
+  border: 2px dashed rgba(255, 45, 155, 0.45);
+}
+
+.arcade-game-panel__label {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--arcade-magenta);
+  margin-bottom: 0.35rem;
+}
+
+.arcade-game-panel__title {
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--arcade-text);
+}
+
+.arcade-game-panel__hint {
+  margin: 0.35rem 0 0;
+  font-size: 1.1rem;
+  color: var(--arcade-text-muted);
+}
+
+/* —— Projects floor —— */
+.arcade-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.arcade-project-card {
+  background: var(--arcade-panel);
+  border-radius: 10px;
+  border: 2px solid rgba(232, 184, 74, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.arcade-project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(60, 242, 200, 0.45);
+}
+
+.arcade-project-card__shot {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #000;
+}
+
+.arcade-project-card__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.arcade-project-filmstrip {
+  display: flex;
+  gap: 4px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.35);
+  border-top: 1px solid rgba(60, 242, 200, 0.12);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.arcade-project-filmstrip__thumb {
+  flex: 0 0 56px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  background: #000;
+  opacity: 0.85;
+  transition: border-color 0.15s, opacity 0.15s;
+}
+
+.arcade-project-filmstrip__thumb:hover {
+  opacity: 1;
+  border-color: rgba(60, 242, 200, 0.55);
+}
+
+.arcade-project-filmstrip__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.arcade-project-card__body {
+  padding: 1rem 1.1rem 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.arcade-project-card__title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.52rem;
+  line-height: 1.7;
+  color: var(--arcade-gold);
+  margin: 0;
+}
+
+.arcade-project-card__desc {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--arcade-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.arcade-project-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.arcade-project-card__link {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--arcade-cyan);
+  text-decoration: none;
+}
+
+.arcade-project-card__link:hover {
+  text-decoration: underline;
+}
+
+.arcade-projects-embed {
+  margin-top: 0.25rem;
+}
+
+/* —— Dashboard shell (cabinet sidebar + stage) —— */
+.arcade-root--dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 0;
+  background: #0f0e17;
+  font-size: 1.15rem;
+}
+
+/* Default layout wrapper (used by dashboard below) */
+.arcade-layout {
+  width: 100%;
+  max-width: min(1480px, 100%);
+  margin: 0 auto;
+  padding: 0 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Full-bleed dashboard: no side “frame” from max-width / horizontal padding */
+.arcade-root--dashboard .arcade-layout {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.arcade-root--dashboard::before {
+  opacity: 0.35;
+}
+
+/* Top bar */
+.arcade-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding: 16px 8px 18px;
+  background: #1a1828;
+  border-bottom: 1px solid #2e2c44;
+}
+
+.arcade-topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.arcade-topbar__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.arcade-topbar__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+}
+
+.arcade-topbar__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2e2c44;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+}
+
+.arcade-topbar__name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #e8e6ff;
+}
+
+.arcade-topbar__role {
+  font-family: "Press Start 2P", cursive;
+  font-size: 6px;
+  letter-spacing: 0.5px;
+  color: #6b6980;
+  margin-top: 4px;
+}
+
+.arcade-topbar__coin {
+  font-family: "Press Start 2P", cursive;
+  font-size: 6px;
+  color: #ffd93d;
+  letter-spacing: 0.5px;
+  animation: arcade-blink 1.4s step-end infinite;
+}
+
+@keyframes arcade-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.arcade-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.arcade-topbar__doc {
+  font-family: "Press Start 2P", cursive;
+  font-size: 6px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #3cf2c8;
+  background: transparent;
+  color: #3cf2c8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.arcade-topbar__doc--ghost {
+  border-color: #ff2d9b;
+  color: #ff2d9b;
+}
+
+.arcade-topbar__social {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.arcade-topbar__social a {
+  color: #6b6980;
+  display: flex;
+}
+
+.arcade-topbar__social a:hover {
+  color: #3cf2c8;
+}
+
+/* Main grid: sidebar wide enough for pixel font + role lines to breathe */
+.arcade-dashboard {
+  display: grid;
+  grid-template-columns: minmax(288px, 330px) minmax(0, 1fr);
+  column-gap: 28px;
+  flex: 1;
+  min-height: 0;
+}
+
+.arcade-sidebar {
+  background: #1a1828;
+  border-right: 1px solid #2e2c44;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0 20px;
+  gap: 4px;
+}
+
+.arcade-sidebar__heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 6px;
+  color: #6b6980;
+  letter-spacing: 2px;
+  padding: 0 18px 14px;
+  border-bottom: 1px solid #2e2c44;
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.arcade-cab-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 14px 14px 12px;
+  border: none;
+  border-left: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Press Start 2P", cursive;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.arcade-cab-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.arcade-cab-btn.is-active {
+  border-left-color: var(--cab-accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.arcade-cab-btn__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 15px;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  margin-top: 2px;
+}
+
+.arcade-cab-btn__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.arcade-cab-btn__name {
+  display: block;
+  font-size: 6.75px;
+  color: #e8e6ff;
+  letter-spacing: 0.55px;
+  line-height: 1.75;
+}
+
+.arcade-cab-btn__type {
+  display: block;
+  font-size: 5.25px;
+  color: #8f95b5;
+  letter-spacing: 0.65px;
+  line-height: 1.85;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.arcade-cab-btn__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  align-self: center;
+}
+
+/* Cabinet switch: stagger content top-left → bottom-right */
+@keyframes arcade-cascade-in {
+  from {
+    opacity: 0;
+    transform: translate(-12px, -8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.arcade-cascade-in {
+  --cascade-step: 0.055s;
+  opacity: 0;
+  animation: arcade-cascade-in 0.48s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  animation-delay: calc(var(--cascade-index, 0) * var(--cascade-step));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcade-cascade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.arcade-stage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #0f0e17;
+}
+
+.arcade-stage__cascade {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.arcade-stage__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: 28px;
+  row-gap: 14px;
+  padding: 20px 8px 18px 4px;
+  border-bottom: 1px solid #2e2c44;
+}
+
+@media (max-width: 700px) {
+  .arcade-stage__header {
+    grid-template-columns: 1fr;
+  }
+}
+
+.arcade-stage__intro {
+  min-width: 0;
+  padding-right: 4px;
+}
+
+.arcade-stage__title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 10px;
+  color: #e8e6ff;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+.arcade-stage__sub {
+  font-family: "VT323", sans-serif;
+  font-size: 1.28rem;
+  color: #6b6980;
+  margin-top: 10px;
+  line-height: 1.55;
+  max-width: 70ch;
+}
+
+.arcade-stage__tabs {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: start;
+}
+
+.arcade-tab {
+  font-family: "Press Start 2P", cursive;
+  font-size: 6px;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1px solid #2e2c44;
+  background: transparent;
+  color: #6b6980;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.12s;
+}
+
+.arcade-tab:hover {
+  border-color: var(--cab-accent);
+  color: var(--cab-accent);
+}
+
+.arcade-tab.is-active {
+  background: var(--cab-accent);
+  border-color: var(--cab-accent);
+  color: #0a0a12;
+}
+
+.arcade-stage__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 8px 32px 4px;
+  min-height: 0;
+}
+
+/* Play tab: top-aligned; avoid a tall empty band from vertical centering */
+.arcade-stage__body:has(> .arcade-game-outer) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+.arcade-stage__body > .arcade-game-outer {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Info panel */
+.arcade-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.arcade-info-panel__lede {
+  margin: 0 0 8px;
+  color: #8ba3b5;
+  font-size: 1.2rem;
+}
+
+.arcade-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.arcade-stat-grid--single {
+  grid-template-columns: 1fr;
+  max-width: 420px;
+}
+
+@media (max-width: 640px) {
+  .arcade-stat-grid:not(.arcade-stat-grid--single) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.arcade-stat-box {
+  --stat-accent: var(--arcade-cyan);
+  position: relative;
+  text-align: center;
+  padding: 14px 10px 12px;
+  border-radius: 10px;
+  border: 1px solid
+    color-mix(in srgb, var(--stat-accent) 32%, #2e2c44 68%);
+  background: linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--stat-accent) 14%, transparent),
+      rgba(0, 0, 0, 0.22) 55%,
+      rgba(15, 14, 23, 0.65) 100%
+    );
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--stat-accent) 10%, transparent),
+    0 10px 28px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 color-mix(in srgb, var(--stat-accent) 12%, transparent);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.arcade-stat-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--stat-accent),
+    color-mix(in srgb, var(--stat-accent) 45%, #0f0e17) 100%
+  );
+  opacity: 0.95;
+}
+
+.arcade-stat-box:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--stat-accent) 45%, #2e2c44 55%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--stat-accent) 18%, transparent),
+    0 14px 36px rgba(0, 0, 0, 0.45),
+    0 0 24px color-mix(in srgb, var(--stat-accent) 18%, transparent);
+}
+
+.arcade-stat-kicker {
+  display: block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 4.5px;
+  letter-spacing: 1.4px;
+  color: #5c6378;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.arcade-stat-num {
+  display: block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 11px;
+  margin-bottom: 6px;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--stat-accent) 35%, transparent);
+  line-height: 1.4;
+}
+
+.arcade-stat-lbl {
+  display: block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 5.5px;
+  color: #9aa3b8;
+  line-height: 1.7;
+}
+
+.arcade-stat-detail {
+  display: block;
+  margin-top: 8px;
+  font-family: "VT323", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.35;
+  color: #6b7a8a;
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.arcade-info-block {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #2e2c44;
+  border-left-width: 3px;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+}
+
+.arcade-info-label {
+  font-family: "Press Start 2P", cursive;
+  font-size: 6px;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+
+.arcade-info-text {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #c5d4e0;
+  line-height: 1.5;
+}
+
+.arcade-mission-list {
+  --mission-accent: var(--arcade-cyan);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arcade-mission-list li {
+  position: relative;
+  padding: 0 0 0 1.35rem;
+  font-size: 1.2rem;
+  color: #c5d4e0;
+  line-height: 1.45;
+}
+
+.arcade-mission-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--mission-accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--mission-accent) 55%, transparent);
+}
+
+.arcade-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.arcade-tag {
+  font-family: "Press Start 2P", cursive;
+  font-size: 5.5px;
+  padding: 5px 9px;
+  border: 1px solid;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.arcade-tag--gold {
+  color: #e8b84a !important;
+  border-color: rgba(232, 184, 74, 0.45) !important;
+}
+
+.arcade-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arcade-bar-lbl {
+  font-family: "Press Start 2P", cursive;
+  font-size: 5.5px;
+  color: #6b6980;
+  margin-bottom: 4px;
+}
+
+.arcade-bar-track {
+  height: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.arcade-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease;
+}
+
+.arcade-shot-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arcade-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.arcade-shot-tile {
+  padding: 0;
+  border: 1px solid #2e2c44;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+  aspect-ratio: 16 / 10;
+}
+
+.arcade-shot-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.arcade-btn--inline {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.arcade-play-placeholder {
+  max-width: 48ch;
+  padding: 24px;
+  border: 1px dashed #2e2c44;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.arcade-play-placeholder__title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 9px;
+  margin: 0 0 12px;
+}
+
+.arcade-play-placeholder__text {
+  margin: 0;
+  color: #8ba3b5;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.arcade-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 8px 20px;
+  background: #1a1828;
+  border-top: 1px solid #2e2c44;
+  font-family: "Press Start 2P", cursive;
+  font-size: 5.5px;
+  color: #6b6980;
+}
+
+.arcade-footer-bar__links {
+  display: flex;
+  gap: 16px;
+}
+
+.arcade-footer-bar__links a {
+  color: #6b6980;
+  text-decoration: none;
+}
+
+.arcade-footer-bar__links a:hover {
+  color: #3cf2c8;
+}
+
+@media (max-width: 900px) {
+  .arcade-layout {
+    padding: 0 16px;
+  }
+
+  .arcade-root--dashboard .arcade-layout {
+    padding: 0;
+  }
+
+  .arcade-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .arcade-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #2e2c44;
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .arcade-sidebar__heading {
+    display: none;
+  }
+
+  .arcade-cab-btn {
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    padding: 10px 8px;
+  }
+
+  .arcade-cab-btn.is-active {
+    border-left-color: transparent;
+    border-bottom-color: var(--cab-accent);
+  }
+
+  .arcade-cab-btn__type {
+    display: none;
+  }
+
+  .arcade-cab-btn__dot {
+    display: none;
+  }
+
+  .arcade-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
